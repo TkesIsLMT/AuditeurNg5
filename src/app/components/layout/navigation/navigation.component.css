@@ -1,0 +1,14 @@
+/* Gestion du changement d'icone pour les sous menus de Référentiels selon s'ils sont actifs ou non*/
+a.active svg.fa-box {
+    display: none;
+}
+a:not(.active) svg.fa-box {
+    display: inline;
+}
+
+a.active svg.fa-box-open {
+    display: inline;
+}
+a:not(.active) svg.fa-box-open {
+    display: none;
+}

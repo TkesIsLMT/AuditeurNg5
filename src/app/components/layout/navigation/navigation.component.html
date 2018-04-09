@@ -8,12 +8,23 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-boxes"></i>
           {{ 'app.nav.ref.titre' | translate }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/categories"> {{ 'app.nav.ref.categorie' | translate }}</a>
-          <a class="dropdown-item" href="">Points</a>
-          <a class="dropdown-item" href="">Modèles</a>
+          <a class="dropdown-item" routerLink="/categories" routerLinkActive="active">
+            <i class="fas fa-box"></i>
+            <i class="fas fa-box-open"></i>
+             {{ 'app.nav.ref.categorie' | translate }}
+          </a>
+          <a class="dropdown-item" routerLinkActive="active">
+              <i class="fas fa-box"></i>
+              {{ 'app.nav.ref.point' | translate }}
+          </a>
+          <a class="dropdown-item" routerLinkActive="active">
+              <i class="fas fa-box"></i>
+              {{ 'app.nav.ref.modele' | translate }}
+          </a>
         </div>
       </li>
       <li class="nav-item">

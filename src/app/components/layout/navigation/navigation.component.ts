@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'underscore';
 
 @Component({
@@ -9,14 +8,9 @@ import * as _ from 'underscore';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private translate:TranslateService) { }
-
-  trTitre :string;
+  constructor() { }
 
   ngOnInit() {
-    this.translate.get('app.titre').subscribe((res :string) => { 
-      this.trTitre = res; });
   }
-
 
 }
