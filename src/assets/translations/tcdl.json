@@ -1,0 +1,14 @@
+{
+    "app": {
+        "titre": "Tournée CDL",
+        "nav": {
+          "ref": {
+            "titre": "Référentiels",
+            "categorie": "Catégories",
+            "point": "Points de contrôle",
+            "modele": "Modèles d'inspection"
+          },
+          "menu2": "mEnU 2"
+        }
+      }
+}
