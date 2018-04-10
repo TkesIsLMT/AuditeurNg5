@@ -33,7 +33,15 @@ import { MessageService } from './services/message.service';
   imports: [
     BrowserModule, NgbModule.forRoot(),
     AppRoutingModule, HttpClientModule,
-    BrowserAnimationsModule, ToastrModule.forRoot(), 
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      maxOpened: 10,
+      newestOnTop: true,
+      preventDuplicates: false,
+      closeButton: false,
+      tapToDismiss: true,
+      enableHtml: true,
+    }), 
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
