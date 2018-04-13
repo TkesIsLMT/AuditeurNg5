@@ -1,8 +1,16 @@
-<p class="h2">Référentiel : Les catégories</p>
+<p class="h2">Référentiel : Les points de contrôle</p>
 
-<mat-form-field>
+<!-- <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+</mat-form-field> -->
+<mat-input-container>
+  <input matInput placeholder="Rechercher..." #input>
+</mat-input-container>
+<div class="spinner-container">
+  <div *ngIf="dataSource.loading$ | async">
+    <mat-spinner class="mx-auto" diameter="20"></mat-spinner>
+  </div>
+</div>
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="Id">
     <mat-header-cell *matHeaderCellDef>UID</mat-header-cell>
@@ -23,7 +31,7 @@
 </mat-table>
 
 <mat-paginator #paginator
-[pageSize]="5"
-[pageSizeOptions]="[5, 10, 20]"
-[showFirstLastButtons]="false">
+[length]="nbPoints"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 20]">
 </mat-paginator>

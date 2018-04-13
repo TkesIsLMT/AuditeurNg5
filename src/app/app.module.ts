@@ -8,16 +8,22 @@ import { WebpackTranslateLoader } from './utils/WebpackTranslateLoader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { AppMaterialModule } from './app-material.module';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { NavigationComponent } from './components/layout/navigation/navigation.component';
 import { MainSectionComponent } from './components/layout/main-section/main-section.component';
 import { CategorieListComponent } from './components/business/categories/categorie-list/categorie-list.component';
+import { PointListComponent } from './components/business/points/point-list/point-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/business/home/home.component';
 import { NotFoundComponent } from './components/layout/not-found/not-found.component';
 import { MessageService } from './services/message.service';
+import { CategorieService } from './components/business/categories/categorie.service';
+import { FormsModule } from '@angular/forms';
+import { PointService } from './components/business/points/point.service';
 
 @NgModule({
   declarations: [
@@ -27,11 +33,13 @@ import { MessageService } from './services/message.service';
     NavigationComponent,
     MainSectionComponent,
     CategorieListComponent,
+    PointListComponent,
     HomeComponent,
     NotFoundComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
+    FormsModule,
     AppRoutingModule, HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
@@ -47,9 +55,10 @@ import { MessageService } from './services/message.service';
         provide: TranslateLoader,
         useClass: WebpackTranslateLoader
       }
-    })
-  ],
-  providers: [MessageService],
+    }),
+    AppMaterialModule
+    ],
+  providers: [MessageService, CategorieService, PointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
