@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between pb-1">
+  <div class="mr-auto" *ngIf="showLoading | async">
+    <span><i class="fas fa-spinner fa-spin"></i> Chargement...</span>
+  </div>
+  <div class="ml-auto d-flex justify-content-end w-50">
+    <input [ngClass]="{'d-none': !showSearchInput }" class="form-control form-control-sm animated zoomInRight" type="search" placeholder="Rechercher..." #filterInput>
+    <button class="btn btn-sm btn-outline-secondary ml-1" title="Rechercher" (click)="toggleSearch()"><i class="fas fa-search"></i></button>
+  </div>
+</div>

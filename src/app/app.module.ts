@@ -24,6 +24,9 @@ import { MessageService } from './services/message.service';
 import { CategorieService } from './components/business/categories/categorie.service';
 import { FormsModule } from '@angular/forms';
 import { PointService } from './components/business/points/point.service';
+import { ReferentielTopTableComponent } from './components/tools/referentiel-top-table/referentiel-top-table.component';
+import { CustomPaginatorComponent } from './components/tools/custom-paginator/custom-paginator.component';
+import { GlobalInfo } from './services/global-info.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { PointService } from './components/business/points/point.service';
     CategorieListComponent,
     PointListComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent,
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
@@ -58,7 +62,7 @@ import { PointService } from './components/business/points/point.service';
     }),
     AppMaterialModule
     ],
-  providers: [MessageService, CategorieService, PointService],
+  providers: [GlobalInfo, MessageService, CategorieService, PointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

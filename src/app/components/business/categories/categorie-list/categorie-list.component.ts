@@ -29,6 +29,7 @@ export class CategorieListComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+    console.log('receive event with ' + filterValue);
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;

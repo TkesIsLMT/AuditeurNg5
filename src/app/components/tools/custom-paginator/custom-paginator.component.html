@@ -1,0 +1,20 @@
+<div class="d-flex flex-row-reverse">
+    <mat-paginator #paginator
+    [length]="rowCount"
+    [pageSize]="dataSource.currentPageSize" 
+    [pageSizeOptions]="pageSizeOptionList">
+    </mat-paginator>
+    <div class="mat-paginator">
+      <div class="mat-paginator-container">
+        <div class="mat-paginator-page-size">
+            <div class="mat-paginator-page-size-label">Page</div>
+            <mat-form-field class="mat-paginator-page-size-select">
+              <input type="number" matInput #gotoInput [(ngModel)]="manualPage" (keyup)="tryGotoPage($event)" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="gotoPage()">
+                  <i class="fas fa-check"></i>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+    </div>
+  </div>

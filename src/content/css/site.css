@@ -1,0 +1,7 @@
+mat-table.table-referentiel mat-row{
+    min-height: 36px;
+}
+
+.mat-paginator-range-actions {
+    padding-top:5px;
+}

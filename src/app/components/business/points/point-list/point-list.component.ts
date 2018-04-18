@@ -7,6 +7,8 @@ import { PointsDataSource } from '../point-data-source';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { merge } from 'rxjs/observable/merge';
 import { fromEvent} from 'rxjs/observable/fromEvent';
+import { GlobalInfo } from '../../../../services/global-info.service';
+import { CustomPaginatorComponent } from '../../../tools/custom-paginator/custom-paginator.component';
 
 @Component({
   selector: 'app-point-list',
@@ -16,52 +18,41 @@ import { fromEvent} from 'rxjs/observable/fromEvent';
 export class PointListComponent implements OnInit {
   columnsToDisplay = ['Id','Code', 'Libelle'];
   dataSource :PointsDataSource;
-  nbPoints :number;
-  
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('input') input: ElementRef;
 
-  constructor(private msg: MessageService, private pointSrv: PointService) { 
+  @ViewChild(CustomPaginatorComponent) paginator: CustomPaginatorComponent;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private msg: MessageService, private pointSrv: PointService, private globals: GlobalInfo) { 
   }
 
   ngOnInit() {
-    //this.msg.info("ngOnInit()");
-
-    this.dataSource = new PointsDataSource(this.pointSrv);
-    this.dataSource.loadPoints();
-    this.dataSource.connectCount().subscribe(ttl=>this.nbPoints = ttl);
+    this.dataSource = new PointsDataSource(this.pointSrv,this.globals);
+    this.dataSource.loadPartialData();
   }
 
+  runFilter(value){
+    this.paginator.initPagination();
+    this.dataSource.filterValue = value;
+    this.loadPointsPage();
+  }
   
   ngAfterViewInit() {
-
-    console.log(this.input);
-    // server-side search
-    fromEvent(this.input.nativeElement,'keyup')
-    .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-            this.paginator.pageIndex = 0;
-            this.loadPointsPage();
-        })
-    ).subscribe();
-
-    this.paginator.page.pipe(tap(()=>this.loadPointsPage())).subscribe();
-    
-    this.sort.sortChange.subscribe(()=>this.paginator.pageIndex= 0);
-    merge(this.sort.sortChange, this.paginator.page).pipe(
-      tap(()=>this.loadPointsPage())
-    ).subscribe();
+    this.sort.sortChange.subscribe(()=>this.runSort());
   }
 
-  loadPointsPage( ){
-    console.log (this.sort);
+  runSort(){
     let sortAsc = this.sort.direction!=='asc';
     let sortCol = this.sort.active;
     if (this.sort.direction==='')
       sortCol = '';
-    this.dataSource.loadPoints(this.input.nativeElement.value, sortCol, sortAsc ,this.paginator.pageIndex, this.paginator.pageSize);
+      
+    this.paginator.initPagination();
+    this.dataSource.sortDataColumn = sortCol;
+    this.dataSource.sortDirection = sortAsc;
+    this.loadPointsPage();
+  }
+
+  loadPointsPage(){
+    this.dataSource.loadPartialData();
   }
 }

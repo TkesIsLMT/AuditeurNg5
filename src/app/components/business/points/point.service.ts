@@ -40,7 +40,7 @@ export class PointService {
       return this.http.get<PointSynthesePartialList>(this.baseUrl + '/find', options); 
     }
   
-    count():Observable<number>{
-      return this.http.get<number>(this.baseUrl + '/count', {headers:httpHeaders});
-    }
+    // count():Observable<number>{
+    //   return this.http.get<number>(this.baseUrl + '/count', {headers:httpHeaders});
+    // }
 }

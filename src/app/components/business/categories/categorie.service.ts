@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 
 import { Categorie } from '../../../models/categorie';
+import { CategorieSynthesePartialList } from "./models/categorie-synthese-partial-list";
 
-const httpOptions = {
-  headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-      }),
-  //withCredentials: true,
-};
+const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
 
 @Injectable()
 export class CategorieService {
@@ -22,6 +18,19 @@ export class CategorieService {
   }
 
   getCategories(): Observable<Categorie[]>{
-    return this.http.get<Categorie[]>(this.baseUrl, httpOptions);
+    return this.http.get<Categorie[]>(this.baseUrl, {headers:httpHeaders});
   }
+
+  findCategories(filter='', sortColumn='', sortAsc=true, pageNumber=1, pageSize=5) :Observable<CategorieSynthesePartialList> {
+      let httpParams = new HttpParams()
+        .set('filter',filter)
+        .set('orderby',sortColumn)
+        .set('asc', sortAsc.toString())
+        .set('pagetoskip',pageNumber.toString())
+        .set('pageSize', pageSize.toString());
+      let options = { 
+        headers:httpHeaders,
+        params: httpParams};
+      return this.http.get<CategorieSynthesePartialList>(this.baseUrl + '/find', options); 
+    }
 }
