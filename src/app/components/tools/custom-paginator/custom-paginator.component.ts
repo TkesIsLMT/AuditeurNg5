@@ -19,7 +19,6 @@ export class CustomPaginatorComponent implements OnInit {
   pageSizeOptionList: number[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('gotoInput') gotoInput: ElementRef;
 
   constructor(private globals: GlobalInfo) { 
   }
@@ -47,11 +46,6 @@ export class CustomPaginatorComponent implements OnInit {
     this.paginator.pageIndex = this.manualPage - 1;
   }
 
-  tryGotoPage(eventArgs){
-    if (eventArgs.keyCode !== 13)
-      return;
-    this.gotoPage();
-  }
   gotoPage(){
     this.checkManualPage();
     this.loadPage();

@@ -1,0 +1,16 @@
+.mat-header-row {
+    min-height: 36px;
+}
+.mat-cell, .mat-header-cell{
+    padding: 0 5px;
+}
+.mat-column-Id{
+    -webkit-box-flex:0 !important;
+        -ms-flex:0 1 100px !important;
+            flex:0 1 100px !important;
+}
+.mat-column-Code{
+    -webkit-box-flex:0!important;
+        -ms-flex:0 1 25%!important;
+            flex:0 1 25%!important;
+}

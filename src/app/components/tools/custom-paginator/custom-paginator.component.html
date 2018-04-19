@@ -9,7 +9,7 @@
         <div class="mat-paginator-page-size">
             <div class="mat-paginator-page-size-label">Page</div>
             <mat-form-field class="mat-paginator-page-size-select">
-              <input type="number" matInput #gotoInput [(ngModel)]="manualPage" (keyup)="tryGotoPage($event)" />
+              <input type="number" matInput [(ngModel)]="manualPage" (keyup.enter)="gotoPage()" />
               <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="gotoPage()">
                   <i class="fas fa-check"></i>
               </button>
