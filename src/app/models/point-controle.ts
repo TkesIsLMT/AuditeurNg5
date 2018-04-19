@@ -1,6 +1,6 @@
-import { Synthese } from "../shared/synthese/Synthese";
+import { ReferentielData } from "../components/tools/referentiel-utils/referentiel-data";
 
-export class PointControle implements Synthese {
+export class PointControle implements ReferentielData {
     Id: string;
     Code: string;
     Libelle: string;

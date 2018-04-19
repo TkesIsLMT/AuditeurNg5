@@ -4,15 +4,13 @@ import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import {map} from "rxjs/operators";
 import { PointControle } from '../../../models/point-controle';
-
-import * as _ from "lodash";
-import { SynthesePartialList } from '../../../shared/synthese/synthese-partial-list';
-import { SyntheseService } from '../../../shared/synthese/synthese-service';
+import { ReferentielBaseService } from '../../tools/referentiel-utils/referentiel-base-service';
+import { ReferentielPartialLoadingList } from '../../tools/referentiel-utils/referentiel-partial-loading-list';
 
 const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
 
 @Injectable()
-export class PointService  implements SyntheseService{
+export class PointService  implements ReferentielBaseService{
 
   private baseUrl = 'point';
 
@@ -27,7 +25,7 @@ export class PointService  implements SyntheseService{
     return this.http.get<PointControle[]>(this.baseUrl, options);
   }
 
-  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<SynthesePartialList> {
+  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<ReferentielPartialLoadingList> {
       let httpParams = new HttpParams()
         .set('filter',filter)
         .set('orderby',sortColumn)
@@ -38,6 +36,6 @@ export class PointService  implements SyntheseService{
         headers:httpHeaders,
         params: httpParams
       };
-      return this.http.get<SynthesePartialList>(this.baseUrl + '/find', options); 
+      return this.http.get<ReferentielPartialLoadingList>(this.baseUrl + '/find', options); 
     }
 }

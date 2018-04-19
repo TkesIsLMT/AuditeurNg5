@@ -1,17 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { PointsDataSource } from "../point-data-source";
-import { SyntheseListBaseComponent } from "../../../../shared/synthese/synthese-list-base-component";
 import { MessageService } from "../../../../services/message.service";
 import { PointService } from "../point.service";
 import { GlobalInfo } from "../../../../services/global-info.service";
+import { ReferentielListBaseComponent } from "../../../tools/referentiel-utils/referentiel-list-base-component";
 
 @Component({
   selector: 'app-point-list',
   templateUrl: './point-list.component.html',
   styleUrls: ['./point-list.component.css',
-    '../../../../shared/synthese/synthese.css']
+  '../../../tools/referentiel-utils/referentiel-style.css']
 })
-export class PointListComponent extends SyntheseListBaseComponent implements OnInit  {
+export class PointListComponent extends ReferentielListBaseComponent implements OnInit  {
   dataSource :PointsDataSource;
 
   constructor(private msg: MessageService, private dataSrv: PointService, private globals: GlobalInfo) { 

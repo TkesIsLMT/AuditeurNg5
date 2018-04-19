@@ -4,13 +4,13 @@ import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 
 import { Categorie } from '../../../models/categorie';
-import { SyntheseService } from '../../../shared/synthese/synthese-service';
-import { SynthesePartialList } from '../../../shared/synthese/synthese-partial-list';
+import { ReferentielPartialLoadingList } from '../../tools/referentiel-utils/referentiel-partial-loading-list';
+import { ReferentielBaseService } from '../../tools/referentiel-utils/referentiel-base-service';
 
 const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
 
 @Injectable()
-export class CategorieService implements SyntheseService{
+export class CategorieService implements ReferentielBaseService{
 
   private baseUrl = 'categorie';
 
@@ -22,7 +22,7 @@ export class CategorieService implements SyntheseService{
     return this.http.get<Categorie[]>(this.baseUrl, {headers:httpHeaders});
   }
 
-  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<SynthesePartialList> {
+  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<ReferentielPartialLoadingList> {
       let httpParams = new HttpParams()
         .set('filter',filter)
         .set('orderby',sortColumn)
@@ -34,6 +34,6 @@ export class CategorieService implements SyntheseService{
         params: httpParams,
         withCredential:true
       };
-      return this.http.get<SynthesePartialList>(this.baseUrl + '/find', options); 
+      return this.http.get<ReferentielPartialLoadingList>(this.baseUrl + '/find', options); 
     }
 }

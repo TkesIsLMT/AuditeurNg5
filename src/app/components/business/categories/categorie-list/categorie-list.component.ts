@@ -9,15 +9,15 @@ import { merge } from 'rxjs/observable/merge';
 import { fromEvent} from 'rxjs/observable/fromEvent';
 import { GlobalInfo } from '../../../../services/global-info.service';
 import { CustomPaginatorComponent } from '../../../tools/custom-paginator/custom-paginator.component';
-import { SyntheseListBaseComponent } from '../../../../shared/synthese/synthese-list-base-component';
+import { ReferentielListBaseComponent } from '../../../tools/referentiel-utils/referentiel-list-base-component';
 
 @Component({
   selector: 'app-categorie-list',
   templateUrl: './categorie-list.component.html',
   styleUrls: ['./categorie-list.component.css',
-    '../../../../shared/synthese/synthese.css']
+    '../../../tools/referentiel-utils/referentiel-style.css']
 })
-export class CategorieListComponent extends SyntheseListBaseComponent implements OnInit  {
+export class CategorieListComponent extends ReferentielListBaseComponent implements OnInit  {
   dataSource :CategorieDataSource;
 
   constructor(private msg: MessageService, private categorieSrv: CategorieService, private globals: GlobalInfo) { 

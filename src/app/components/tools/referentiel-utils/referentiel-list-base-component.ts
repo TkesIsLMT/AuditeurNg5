@@ -3,13 +3,12 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { merge } from 'rxjs/observable/merge';
 import { fromEvent} from 'rxjs/observable/fromEvent';
-import { GlobalInfo } from '../../services/global-info.service';
-import { CustomPaginatorComponent } from '../../components/tools/custom-paginator/custom-paginator.component';
-import { SynthesePaginatorDataSource } from '../../components/tools/synthese-paginator-data-source';
+import { ReferentielPaginatorDataSource } from '../data-source/referentiel-paginator-data-source';
+import { CustomPaginatorComponent } from '../custom-paginator/custom-paginator.component';
 
-export abstract class SyntheseListBaseComponent {
+export abstract class ReferentielListBaseComponent {
   columnsToDisplay = ['Id','Code', 'Libelle'];
-  abstract dataSource :SynthesePaginatorDataSource;
+  abstract dataSource :ReferentielPaginatorDataSource;
 
   @ViewChild(CustomPaginatorComponent) paginator: CustomPaginatorComponent;
   @ViewChild(MatSort) sort: MatSort;

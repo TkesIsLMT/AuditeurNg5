@@ -1,4 +1,4 @@
-export interface Synthese
+export interface ReferentielData
 {
     Id :string;
     Code :string;

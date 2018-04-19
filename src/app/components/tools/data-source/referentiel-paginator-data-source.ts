@@ -1,26 +1,26 @@
 import { PaginatorDataSource } from "./paginator-data-source";
-import { GlobalInfo } from "./../../services/global-info.service";
-import { Synthese } from "./../../shared/synthese/synthese";
-import { SynthesePartialList } from "./../../shared/synthese/synthese-partial-list";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { CollectionViewer } from "@angular/cdk/collections";
 import { Observable } from "rxjs/Observable";
-import { SyntheseService } from "../../shared/synthese/synthese-service";
 import { catchError, finalize } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
+import { ReferentielData } from "../referentiel-utils/referentiel-data";
+import { ReferentielBaseService } from "../referentiel-utils/referentiel-base-service";
+import { GlobalInfo } from "../../../services/global-info.service";
+import { ReferentielPartialLoadingList } from "../referentiel-utils/referentiel-partial-loading-list";
 
-export abstract class SynthesePaginatorDataSource extends PaginatorDataSource<Synthese> {
+export abstract class ReferentielPaginatorDataSource extends PaginatorDataSource<ReferentielData> {
     filterValue: string;
     sortDataColumn: string;
     sortDirection: boolean;
     currentPageNumber: number;
     currentPageSize: number;
-    private pointsSubject = new BehaviorSubject<Synthese[]>([]);
+    private pointsSubject = new BehaviorSubject<ReferentielData[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
     private countSubject = new BehaviorSubject<number>(0);
     public loading$ = this.loadingSubject.asObservable();
 
-    abstract dataService:SyntheseService;
+    abstract dataService:ReferentielBaseService;
 
     constructor(private globals: GlobalInfo) {
         super();
@@ -29,7 +29,7 @@ export abstract class SynthesePaginatorDataSource extends PaginatorDataSource<Sy
         this.currentPageSize = this.globals.defaultPageSize;
     }
 
-    connect(collectionViewer: CollectionViewer): Observable<Synthese[]> {
+    connect(collectionViewer: CollectionViewer): Observable<ReferentielData[]> {
         return this.pointsSubject.asObservable();
     }
 
@@ -57,7 +57,7 @@ export abstract class SynthesePaginatorDataSource extends PaginatorDataSource<Sy
             pageIndex, pageSize).pipe(
             catchError(() => of([])),
             finalize(() =>  this.loadingSubject.next(false))
-        ).subscribe((pts: SynthesePartialList) => {
+        ).subscribe((pts: ReferentielPartialLoadingList) => {
             this.pointsSubject.next(pts.PageData);
             this.countSubject.next(pts.CountAll);
         } );
