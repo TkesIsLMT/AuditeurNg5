@@ -8,7 +8,7 @@ import { WebpackTranslateLoader } from './utils/WebpackTranslateLoader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-import { AppMaterialModule } from './app-material.module';
+import { AngularMaterialModule } from './vendors/angular-material.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -61,7 +61,7 @@ import { WinAuthInterceptor } from './services/http-interceptor';
         useClass: WebpackTranslateLoader
       }
     }),
-    AppMaterialModule
+    AngularMaterialModule
     ],
   providers: [
     {
