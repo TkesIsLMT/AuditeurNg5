@@ -4,12 +4,13 @@ import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 
 import { Categorie } from '../../../models/categorie';
-import { CategorieSynthesePartialList } from "./models/categorie-synthese-partial-list";
+import { SyntheseService } from '../../../shared/synthese/synthese-service';
+import { SynthesePartialList } from '../../../shared/synthese/synthese-partial-list';
 
 const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
 
 @Injectable()
-export class CategorieService {
+export class CategorieService implements SyntheseService{
 
   private baseUrl = 'categorie';
 
@@ -21,7 +22,7 @@ export class CategorieService {
     return this.http.get<Categorie[]>(this.baseUrl, {headers:httpHeaders});
   }
 
-  findCategories(filter='', sortColumn='', sortAsc=true, pageNumber=1, pageSize=5) :Observable<CategorieSynthesePartialList> {
+  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<SynthesePartialList> {
       let httpParams = new HttpParams()
         .set('filter',filter)
         .set('orderby',sortColumn)
@@ -30,7 +31,9 @@ export class CategorieService {
         .set('pageSize', pageSize.toString());
       let options = { 
         headers:httpHeaders,
-        params: httpParams};
-      return this.http.get<CategorieSynthesePartialList>(this.baseUrl + '/find', options); 
+        params: httpParams,
+        withCredential:true
+      };
+      return this.http.get<SynthesePartialList>(this.baseUrl + '/find', options); 
     }
 }

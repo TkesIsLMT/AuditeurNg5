@@ -1,4 +1,4 @@
-export class ISynthese
+export interface Synthese
 {
     Id :string;
     Code :string;

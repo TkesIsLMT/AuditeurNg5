@@ -1,8 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MessageService } from '../../../../services/message.service';
 import { Categorie } from '../../../../models/categorie';
 import { CategorieService } from '../categorie.service';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { CategorieDataSource } from '../categorie.data-source';
+import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { merge } from 'rxjs/observable/merge';
+import { fromEvent} from 'rxjs/observable/fromEvent';
+import { GlobalInfo } from '../../../../services/global-info.service';
+import { CustomPaginatorComponent } from '../../../tools/custom-paginator/custom-paginator.component';
 
 @Component({
   selector: 'app-categorie-list',
@@ -10,39 +16,44 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
   styleUrls: ['./categorie-list.component.css']
 })
 export class CategorieListComponent implements OnInit {
-  categories: Categorie[];
   columnsToDisplay = ['Id','Code', 'Libelle'];
-  dataSource = new MatTableDataSource<Categorie>(this.categories);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource :CategorieDataSource;
+
+  @ViewChild(CustomPaginatorComponent) paginator: CustomPaginatorComponent;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private msg: MessageService, private categorieSrv: CategorieService) { 
+  constructor(private msg: MessageService, private categorieSrv: CategorieService, private globals: GlobalInfo) { 
   }
 
   ngOnInit() {
-    //this.msg.info("ngOnInit()");
-    this.categorieSrv.getCategories().subscribe(resp => {
-      this.categories = resp;
-      this.dataSource.data = this.categories;
-    });
-    
+    this.dataSource = new CategorieDataSource(this.categorieSrv,this.globals);
+    this.dataSource.loadPartialData();
   }
 
-  applyFilter(filterValue: string) {
-    console.log('receive event with ' + filterValue);
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  runFilter(value){
+    this.paginator.initPagination();
+    this.dataSource.filterValue = value;
+    this.loadCategoriesPage();
   }
   
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.sort.sortChange.subscribe(()=>this.runSort());
   }
 
+  runSort(){
+    let sortAsc = this.sort.direction!=='asc';
+    let sortCol = this.sort.active;
+    if (this.sort.direction==='')
+      sortCol = '';
+      
+    this.paginator.initPagination();
+    this.dataSource.sortDataColumn = sortCol;
+    this.dataSource.sortDirection = sortAsc;
+    this.loadCategoriesPage();
+  }
 
+  loadCategoriesPage(){
+    this.dataSource.loadPartialData();
+  }
 }
+

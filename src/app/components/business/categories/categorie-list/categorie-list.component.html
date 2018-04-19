@@ -1,6 +1,6 @@
 <p class="h2">Référentiel : Les catégories</p>
 
-<app-referentiel-top-table [loading]="dataSource.loading$ | async" (filterValueChange)="applyFilter($event)"></app-referentiel-top-table>
+<app-referentiel-top-table [loading]="dataSource.loading$" (filterValueChange)="runFilter($event)"></app-referentiel-top-table>
 
 <mat-table class="table-referentiel" [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="Id">
@@ -21,8 +21,4 @@
 
 </mat-table>
 
-<mat-paginator #paginator
-[pageSize]="5"
-[pageSizeOptions]="[5, 10, 20]"
-[showFirstLastButtons]="false">
-</mat-paginator>
+<app-custom-paginator [dataSource]="dataSource"></app-custom-paginator>

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { ICustomPaginator } from '../custom-paginator/custom-paginator.data-source';
 
 @Component({
   selector: 'app-referentiel-top-table',

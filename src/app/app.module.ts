@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader'
 import { WebpackTranslateLoader } from './utils/WebpackTranslateLoader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +27,7 @@ import { PointService } from './components/business/points/point.service';
 import { ReferentielTopTableComponent } from './components/tools/referentiel-top-table/referentiel-top-table.component';
 import { CustomPaginatorComponent } from './components/tools/custom-paginator/custom-paginator.component';
 import { GlobalInfo } from './services/global-info.service';
+import { WinAuthInterceptor } from './services/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,12 @@ import { GlobalInfo } from './services/global-info.service';
     }),
     AppMaterialModule
     ],
-  providers: [GlobalInfo, MessageService, CategorieService, PointService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: WinAuthInterceptor,
+      multi: true
+    },GlobalInfo, MessageService, CategorieService, PointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

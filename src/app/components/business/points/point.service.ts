@@ -6,12 +6,13 @@ import {map} from "rxjs/operators";
 import { PointControle } from '../../../models/point-controle';
 
 import * as _ from "lodash";
-import { PointSynthesePartialList } from './models/point-synthese-partial-list';
+import { SynthesePartialList } from '../../../shared/synthese/synthese-partial-list';
+import { SyntheseService } from '../../../shared/synthese/synthese-service';
 
 const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
 
 @Injectable()
-export class PointService {
+export class PointService  implements SyntheseService{
 
   private baseUrl = 'point';
 
@@ -26,8 +27,7 @@ export class PointService {
     return this.http.get<PointControle[]>(this.baseUrl, options);
   }
 
-  findPoints(filter='', sortColumn='', sortAsc=true, pageNumber=1, pageSize=5) :Observable<PointSynthesePartialList> {
-    //(string filter, string orderby, bool asc, int pagetoskip, int pagesize)
+  findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<SynthesePartialList> {
       let httpParams = new HttpParams()
         .set('filter',filter)
         .set('orderby',sortColumn)
@@ -36,11 +36,8 @@ export class PointService {
         .set('pageSize', pageSize.toString());
       let options = { 
         headers:httpHeaders,
-        params: httpParams};
-      return this.http.get<PointSynthesePartialList>(this.baseUrl + '/find', options); 
+        params: httpParams
+      };
+      return this.http.get<SynthesePartialList>(this.baseUrl + '/find', options); 
     }
-  
-    // count():Observable<number>{
-    //   return this.http.get<number>(this.baseUrl + '/count', {headers:httpHeaders});
-    // }
 }

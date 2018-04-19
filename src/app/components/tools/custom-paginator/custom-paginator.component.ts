@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatPaginator, MatSort } from "@angular/material";
 import { fromEvent } from "rxjs/observable/fromEvent";
-import { CustomPaginatorDataSource } from "./custom-paginator.data-source";
 import { GlobalInfo } from '../../../services/global-info.service';
 import { ReferentielTopTableComponent } from '../referentiel-top-table/referentiel-top-table.component';
+import { SynthesePartialList } from '../../../shared/synthese/synthese-partial-list';
+import { SynthesePaginatorDataSource } from '../synthese-paginator-data-source';
 
 @Component({
   selector: 'app-custom-paginator',
@@ -11,7 +12,7 @@ import { ReferentielTopTableComponent } from '../referentiel-top-table/referenti
   styleUrls: ['./custom-paginator.component.css']
 })
 export class CustomPaginatorComponent implements OnInit {
-  @Input() dataSource: CustomPaginatorDataSource<any>;
+  @Input() dataSource: SynthesePaginatorDataSource;
   
   rowCount :number;
   manualPage :number;
