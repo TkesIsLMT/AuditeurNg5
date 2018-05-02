@@ -1,0 +1,222 @@
+body {
+    background-color: #EEF0F2;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    color: #78879B;
+}
+
+.tk-turquoise {
+    color: #0F968C;
+}
+
+.tk-back-turquoise {
+    background-color: #0F968C;
+}
+
+.tk-purple {
+    color: #A51482;
+}
+
+.tk-back-purple {
+    background-color: #A51482;
+}
+
+.tk-red {
+    color: #E60050;
+}
+
+.tk-grey-light {
+    color: #EEF0F2;
+}
+
+.tk-grey {
+    color: #D9DEE8;
+}
+
+.tk-grey-medium {
+    color: #78879B;
+}
+
+.tk-grey-dark {
+    color: #4B5564;
+}
+
+.tk-black {
+    color: #000000;
+}
+
+.tk-blue-dark {
+    color: #003C7D;
+}
+
+.tk-blue-medium {
+    color: #0055BE;
+}
+
+.tk-blue {
+    color: #0078DC;
+}
+
+.tk-blue-bright {
+    color: #50AFE1;
+}
+
+.tk-blue-light {
+    color: #73C3f0;
+}
+
+.tk-back-grey-light {
+    background-color: #EEF0F2;
+}
+
+.tk-back-grey {
+    background-color: #D9DEE8;
+}
+
+.tk-back-grey-medium {
+    background-color: #78879B;
+}
+
+.tk-back-grey-dark {
+    background-color: #4B5564;
+}
+
+.tk-back-black {
+    background-color: #000000;
+}
+
+.tk-back-blue-dark {
+    background-color: #003C7D;
+}
+
+.tk-back-blue-medium {
+    background-color: #0055BE;
+}
+
+.tk-back-blue {
+    background-color: #0078DC;
+}
+
+.tk-back-blue-bright {
+    background-color: #50AFE1;
+}
+
+.tk-back-blue-light {
+    background-color: #73C3f0;
+}
+
+.tk-back-red {
+    background-color: #E60050;
+}
+
+.tk-yellow {
+    color: #FAFF00;
+}
+
+.tk-back-yellow {
+    background-color: #FAFF00;
+}
+
+.tk-green {
+    color: #9BC832;
+}
+
+.tk-back-green {
+    background-color: #9BC832;
+}
+
+.tk-orange {
+    color: #FFB400;
+}
+
+.tk-back-orange {
+    background-color: #FFB400;
+}
+
+.tk-back-white {
+    background-color: #FBFDFF;
+}
+
+/**************************************************************************spécificité pour les encarts de distribution*/
+.btn-encart {
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+.input-group-addon {
+    color: #000000;
+    font-weight: bold;
+}
+
+.encart {
+    padding-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+/**************************************************************************Classe Pointer pour le cursor en pointeur*/
+
+.pointer {
+    cursor: pointer;
+}
+
+    .pointer[readonly],
+    fieldset[readonly] .pointer {
+        cursor: default;
+    }
+
+    .pointer[disabled],
+    fieldset[disabled] .pointer {
+        cursor: not-allowed;
+    }
+
+/**************************************************************************spécifique ugo-check-tree sous forme de form-control*/
+.check-list {
+    overflow-y: scroll;
+    max-height: 50vh;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #0078dc;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    resize: vertical;
+}
+
+    .check-list.form-control {
+        height: 150px;
+    }
+
+    .check-list .input-group-addon {
+        vertical-align: text-top;
+    }
+
+    .check-list > ugo-check-tree > ul {
+        padding-left: 0px;
+    }
+
+    .check-list span {
+        border-width: 0 1px 0 0;
+    }
+
+    .check-list span, .check-list i {
+        cursor: pointer;
+    }
+
+        .check-list span[disabled],
+        .check-list i[disabled],
+        .check-list span.disabled,
+        .check-list i.disabled {
+            cursor: not-allowed;
+        }

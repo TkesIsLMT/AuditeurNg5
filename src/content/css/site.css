@@ -1,7 +1,18 @@
+html, body {
+    font-size: 14px;
+}
+
 mat-table.table-referentiel mat-row{
     min-height: 36px;
 }
 
 .mat-paginator-range-actions {
     padding-top:5px;
+}
+
+.btn-group-xs .btn, .btn-xs {
+    padding: 4px 6px;
+    font-size: 10px;
+    height: 24px;
+    width: 24px;
 }

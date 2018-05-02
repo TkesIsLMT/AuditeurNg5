@@ -1,14 +1,24 @@
 {
-    "app": {
-        "titre": "Tournée CDL",
-        "nav": {
-          "ref": {
-            "titre": "Référentiels",
-            "categorie": "Catégories",
-            "point": "Points de contrôle",
-            "modele": "Modèles d'inspection"
-          },
-          "menu2": "mEnU 2"
-        }
+  "app": {
+      "titre": "Tournée CDL",
+      "nav": {
+        "ref": {
+          "titre": "Référentiels",
+          "categorie": "Catégories",
+          "point": "Points de contrôle",
+          "modele": "Modèles d'inspection"
+        },
+        "menu2": "mEnU 2"
       }
+    },
+  "categorie":{
+    "liste":{
+      "titre":"Les catégories",
+      "ajouter":"Nouvelle..."
+    },
+    "edit":{
+      "titre-ajout":"Nouvelle catégorie",
+      "titre-modif":"Détail catégorie"
+    }
+  }
 }

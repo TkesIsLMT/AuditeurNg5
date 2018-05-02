@@ -1,6 +1,6 @@
 export interface ReferentielData
 {
-    Id :string;
+    Id :number;
     Code :string;
     Libelle :string;
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService, IndividualConfig } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
-
 @Injectable()
 export class MessageService {
   defaultTitre :string;
@@ -30,8 +29,7 @@ export class MessageService {
       }
       
     }
-  
-
+    
 
     success(msg :string, titre = this.defaultTitre){
       setTimeout(() => this.toastr.success(msg,titre,this.successOption));

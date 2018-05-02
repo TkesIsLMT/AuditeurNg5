@@ -28,6 +28,10 @@ import { ReferentielTopTableComponent } from './components/tools/referentiel-top
 import { CustomPaginatorComponent } from './components/tools/custom-paginator/custom-paginator.component';
 import { GlobalInfo } from './services/global-info.service';
 import { WinAuthInterceptor } from './services/http-interceptor';
+import { CategorieEditComponent } from './components/business/categories/categorie-edit/categorie-edit.component';
+import { ShowErrorsComponent } from './components/tools/show-errors/show-errors.component';
+import { UniqueValidatorDirective } from './directives/unique-validator.directive';
+import { DeleteConfirmationDialogComponent } from './components/layout/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { WinAuthInterceptor } from './services/http-interceptor';
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent,
+  ],
+  entryComponents: [
+    DeleteConfirmationDialogComponent,
+    CategorieEditComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),

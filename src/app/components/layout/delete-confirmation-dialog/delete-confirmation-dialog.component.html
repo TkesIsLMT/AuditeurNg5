@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h5 class="modal-title text-danger"><i class="fas fa-exclamation-triangle"></i> Suppression</h5>
+</div>
+<div class="modal-body">
+  <p>{{message}}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" [ngClass]="okBtn.cancelClass" (click)="onCancel(cancelBtn.caption)"><i class="fas" [ngClass]="cancelBtn.faClass"></i> {{cancelBtn.caption}}</button>
+  <button type="button" class="btn" [ngClass]="okBtn.btnClass" (click)="onConfirm(okBtn.caption)"><i class="fas" [ngClass]="okBtn.faClass"></i> {{okBtn.caption}}</button>
+</div>
