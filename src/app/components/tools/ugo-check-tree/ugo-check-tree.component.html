@@ -1,0 +1,15 @@
+<ul class="ugo-check-tree-ul">
+  <li *ngFor="let chk of nodes" class="ugo-check-tree-li" [ngClass]="chk.nodeClass">
+    <span *ngIf="isLineVisible(chk)" [ngClass]="{'with-child': hasChild(chk) }">
+      <ugo-check *ngIf="isChkExpandVisible(chk)" class="ugo-check-tree-checked" [isSelected]="chk.expanded" [checkedClass]="expandClass" [uncheckedClass]="unexpandClass" (onToggle)="toggleExpand(chk)"></ugo-check>
+      <ugo-check *ngIf="isChkCheckVisible(chk)" class="ugo-check-tree-expanded" [isSelected]="chk.checked" [checkedClass]="checkClass" [uncheckedClass]="uncheckClass" (onToggle)="toggleCheck(chk)"></ugo-check>
+      <span class="ugo-check-tree-label" (click)="labelClickManager.click(chk)" (dblclick)="labelClickManager.dblClick(chk)"> {{chk.label}}</span>
+    </span>
+    <ugo-check-tree [checkable]="checkable" [expandable]="expandable" [recursiveCheck]="recursiveCheck" [recursiveExpand]="recursiveExpand"
+        (onBeforeExpand)="onBeforeExpand" (onBeforeCheck)="onBeforeCheck" (onAfterCheck)="onAfterCheck"
+        [checkClass]="checkClass" [uncheckClass]="uncheckClass" [expandClass]="expandClass" [unexpandClass]="unexpandClass"
+        [clickAction]="clickAction" [dblClickAction]="dblClickAction"
+        [nodes]="chk.childs">
+    </ugo-check-tree>
+  </li>
+</ul>

@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AngularMaterialModule } from './vendors/angular-material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -32,6 +33,8 @@ import { CategorieEditComponent } from './components/business/categories/categor
 import { ShowErrorsComponent } from './components/tools/show-errors/show-errors.component';
 import { UniqueValidatorDirective } from './directives/unique-validator.directive';
 import { DeleteConfirmationDialogComponent } from './components/layout/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { UgoCheckComponent } from './components/tools/ugo-check/ugo-check.component';
+import { UgoCheckTreeComponent } from './components/tools/ugo-check-tree/ugo-check-tree.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,7 @@ import { DeleteConfirmationDialogComponent } from './components/layout/delete-co
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
@@ -69,7 +72,8 @@ import { DeleteConfirmationDialogComponent } from './components/layout/delete-co
         useClass: WebpackTranslateLoader
       }
     }),
-    AngularMaterialModule
+    AngularMaterialModule,
+    FontAwesomeModule,
     ],
   providers: [
     {

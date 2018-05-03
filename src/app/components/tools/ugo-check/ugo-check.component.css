@@ -1,0 +1,13 @@
+.ugo-check {
+    cursor: pointer;
+}
+
+    .ugo-check[readonly],
+    fieldset[readonly] .ugo-check {
+        cursor: default;
+    }
+
+    .ugo-check[disabled],
+    fieldset[disabled] .ugo-check {
+        cursor: not-allowed;
+    }

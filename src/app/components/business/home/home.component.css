@@ -1,0 +1,10 @@
+:host/deep/ ugo-check-tree .ugo-check-tree-checked {
+    color:green;
+}
+:host/deep/ ugo-check-tree .ugo-check-tree-expanded {
+    color:red;
+}
+:host/deep/ ugo-check-tree .ugo-check-tree-label {
+    cursor: pointer;
+    color:blueviolet;
+}

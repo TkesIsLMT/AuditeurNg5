@@ -1,0 +1,5 @@
+<span class="ugo-check" tabindex='0' (keydown)="runOnKeyDown($event)" (click)="runOnToggle($event)">
+  <span *ngIf="isSelected"><i [class]="checkedClass"></i></span>
+  <span *ngIf="!isSelected"><i [class]="uncheckedClass"></i></span>
+  <ng-content></ng-content>
+</span>

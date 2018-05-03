@@ -1,0 +1,12 @@
+:host/deep/ ul {
+    list-style-type: none;
+}
+
+:host/deep/ .with-child {
+    font-weight: bold;
+}
+
+:host/deep/ .ugo-check {
+    padding-right: 5px;
+}
+
