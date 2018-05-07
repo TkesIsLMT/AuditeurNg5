@@ -21,6 +21,15 @@
           <app-show-errors [control]="libelle"></app-show-errors>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="fldCategorieMere" class="col-sm-2 col-form-label">Mère</label>
+        <div class="col-sm-10">
+          <div class="form-control check-list">
+            <ugo-check-tree class="no-select" id="fldCategorieMere" name="CategorieMere" [nodes]="categoriesMere" (onBeforeCheck)="beforeCheckAction($event)" (onAfterCheck)="afterCheckAction($event)" >
+            </ugo-check-tree>
+          </div>
+        </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="onCancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>

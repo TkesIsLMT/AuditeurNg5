@@ -16,12 +16,11 @@ export class UgoCheckTreeComponent implements OnInit,AfterViewInit {
   private $clickAction = 'check';
   private $dblClickAction = 'expand';
 
-
   private checkOnClick:boolean;
   private expandOnClick:boolean;
   private checkOnDblClick:boolean;
   private expandOnDblClick:boolean;
-  
+  private labelClickable:boolean = false;
   private labelClickManager: ClickManager;
 
   private cancelClick = false;
@@ -45,6 +44,7 @@ export class UgoCheckTreeComponent implements OnInit,AfterViewInit {
   @Output() onBeforeExpand: EventEmitter<any> = new EventEmitter();
   @Output() onAfterExpand: EventEmitter<any> = new EventEmitter();
 
+
   constructor() { }
 
   ngOnInit() {
@@ -66,6 +66,7 @@ export class UgoCheckTreeComponent implements OnInit,AfterViewInit {
     this.expandOnClick = lowerClick.match('expand') !== null;
     this.checkOnDblClick = lowerDoubl.match('check') !== null;
     this.expandOnDblClick = lowerDoubl.match('expand') !== null;
+    this.labelClickable = this.expandOnClick || this.expandOnDblClick || this.checkOnClick || this.checkOnDblClick;
     this.initOriginalExpandState(this.nodes);
   }
 
@@ -74,6 +75,15 @@ export class UgoCheckTreeComponent implements OnInit,AfterViewInit {
         elements[i].setOriginalState()
         this.initOriginalExpandState(elements[i].childs);
     }
+  }
+
+  /**
+   * Permet de remonter les events jusqu'au parent du premier ugo-check-tree
+   * @param e Event à remonter
+   * @param n Node initial qui a levé l'event
+   */
+  emitEvent(e:EventEmitter<any>, n:UgoTreeNode){
+      e.emit(n);
   }
 
 isChkExpandVisible(chk) {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { DynamicButton } from '../../../utils/dynamic-button';
 
 @Component({
   selector: 'app-referentiel-top-table',
@@ -10,15 +11,19 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 export class ReferentielTopTableComponent implements OnInit {
 
   @Input('loading') showLoading :boolean = false;
+  @Input() addBtn:DynamicButton;
   @Output() filterValueChange = new EventEmitter<string>();
-  
+  @Output() toolClick = new EventEmitter<string>();
   @ViewChild('filterInput') filterInput: ElementRef;
   
   showSearchInput :boolean = false;
   lastFilter:string='';
-  constructor() { }
+  constructor() {
+    this.addBtn = { caption: 'Ajouter', faClass: 'fas fa-plus', btnClass: 'btn btn-primary', visible: false };
+   }
 
   ngOnInit() {
+    
   }
 
   ngAfterViewInit() {
@@ -37,5 +42,9 @@ export class ReferentielTopTableComponent implements OnInit {
 
   toggleSearch(){
     this.showSearchInput=!this.showSearchInput;
+  }
+
+  emit(key:string){
+    this.toolClick.emit(key);
   }
 }

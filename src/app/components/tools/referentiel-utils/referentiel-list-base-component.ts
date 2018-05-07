@@ -7,7 +7,7 @@ import { ReferentielPaginatorDataSource } from '../data-source/referentiel-pagin
 import { CustomPaginatorComponent } from '../custom-paginator/custom-paginator.component';
 
 export abstract class ReferentielListBaseComponent {
-  columnsToDisplay = ['Id','Code', 'Libelle'];
+  columnsToDisplay = ['Id', 'Code', 'Libelle', 'Active', 'Actions'];
   abstract dataSource :ReferentielPaginatorDataSource;
 
   @ViewChild(CustomPaginatorComponent) paginator: CustomPaginatorComponent;
