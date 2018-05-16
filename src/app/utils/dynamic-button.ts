@@ -3,4 +3,5 @@ export interface DynamicButton{
     faClass?: string;
     btnClass?:string;
     visible?:boolean;
+    title?:string;
 }

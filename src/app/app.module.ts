@@ -35,6 +35,9 @@ import { UniqueValidatorDirective } from './directives/unique-validator.directiv
 import { DeleteConfirmationDialogComponent } from './components/layout/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { UgoCheckComponent } from './components/tools/ugo-check/ugo-check.component';
 import { UgoCheckTreeComponent } from './components/tools/ugo-check-tree/ugo-check-tree.component';
+import { PointEditComponent } from './components/business/points/point-edit/point-edit.component';
+import { CategorieTreeSelectComponent } from './components/business/categories/categorie-tree-select/categorie-tree-select.component';
+import { EnumToKeysPipe } from './pipes/enum-to-keys.pipe';
 
 @NgModule({
   declarations: [
@@ -47,11 +50,11 @@ import { UgoCheckTreeComponent } from './components/tools/ugo-check-tree/ugo-che
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
-    CategorieEditComponent
+    CategorieEditComponent, PointEditComponent,
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),

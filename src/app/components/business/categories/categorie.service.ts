@@ -16,65 +16,39 @@ import { UgoTreeNode } from '../../tools/ugo-check-tree/ugo-tree-node';
 import * as _ from 'lodash';
 import { Subject } from 'rxjs/Subject';
 
-const httpHeaders = new HttpHeaders({'Content-Type':  'application/json'});
-const httpOptions = { headers: httpHeaders};
-
 @Injectable()
-export class CategorieService implements ReferentielBaseService{
+export class CategorieService extends ReferentielBaseService{
   private baseUrl = 'categorie';
 
-  constructor(private http: HttpClient, private msg: MessageService) { 
+  constructor(private http: HttpClient, msg: MessageService) { 
+    super(msg);
     this.baseUrl = environment.apiurl + this.baseUrl;
   }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.msg.error(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
-
+  
   /**
    * Permet d'ajouter / modifier une catégorie
    * @param categorie - La catégorie à modifier
    */
   saveCategorie(categorie :CategorieDetail){
     this.forceReload();
-      return this.http.put(this.baseUrl, categorie, httpOptions);
-      // .pipe(
-      //   tap(()=>console.log(`updated categorie id = ${categorie.Id}`))
-      //   catchError(this.handleError<any>('updateCategorie'))
-      // );
+    return this.http.put(this.baseUrl, categorie, this.httpOptions);
   }
 
   deleteCategorie(categorie :ReferentielData | CategorieDetail | number){
     this.forceReload();
     const id = typeof categorie === "number" ? categorie : categorie.Id;
     const url = `${this.baseUrl}/${id}`;
-    return this.http.delete(url, httpOptions);
+    return this.http.delete(url, this.httpOptions);
   }
 
   isCodeUnique(dti: CheckFieldDTI){
-    return this.http.post<boolean>(this.baseUrl + '/codeunique', dti, httpOptions).pipe(
+    return this.http.post<boolean>(this.baseUrl + '/codeunique', dti, this.httpOptions).pipe(
       catchError(this.handleError<boolean>('isCodeUnique', false))
     );
   }
 
-  getCategories(): Observable<CategorieDetail[]>{
-    return this.http.get<CategorieDetail[]>(this.baseUrl, httpOptions);
+  private getCategories(): Observable<CategorieDetail[]>{
+    return this.http.get<CategorieDetail[]>(this.baseUrl, this.httpOptions);
   }
 
   findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5) :Observable<ReferentielPartialLoadingList> {
@@ -85,7 +59,7 @@ export class CategorieService implements ReferentielBaseService{
       .set('pagetoskip',pageNumber.toString())
       .set('pageSize', pageSize.toString());
     let options = { 
-      headers:httpHeaders,
+      headers: this.httpHeaders,
       params: httpParams
     };
     return this.http.get<ReferentielPartialLoadingList>(this.baseUrl + '/find', options); 

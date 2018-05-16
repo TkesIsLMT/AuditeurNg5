@@ -1,6 +1,7 @@
 <p class="h2">Référentiel : Les points de contrôle</p>
 
-<app-referentiel-top-table [loading]="dataSource.loading$" (filterValueChange)="runFilter($event)"></app-referentiel-top-table>
+<app-referentiel-top-table [loading]="dataSource.loading$" (filterValueChange)="runFilter($event)"
+[addBtn]="addBtn" (toolClick)="openEdit()"></app-referentiel-top-table>
 
 <mat-table class="table-referentiel" [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="Id">
@@ -20,8 +21,19 @@
       <mat-cell *matCellDef="let element">
         <ugo-check class="center-in-cell" [isSelected]="element.IsEnable"></ugo-check>
       </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Actions">
+      <mat-header-cell *matHeaderCellDef><span class="center-in-cell">Actions</span></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div class="center-in-cell">
+          <div class="btn-group btn-group-xs" role="group">
+            <button type="button" class="btn btn-primary" (click)="openEdit(row)"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn btn-warning text-light" (click)="askDelete(row)"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+      </mat-cell>
     </ng-container>
-  
+    
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
 

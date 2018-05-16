@@ -7,8 +7,7 @@
           "categorie": "Catégories",
           "point": "Points de contrôle",
           "modele": "Modèles d'inspection"
-        },
-        "menu2": "mEnU 2"
+        }
       }
     },
   "categorie":{
@@ -18,7 +17,17 @@
     },
     "edit":{
       "titre-ajout":"Nouvelle catégorie",
-      "titre-modif":"Détail catégorie"
+      "titre-modif":"Détail de la catégorie"
+    }
+  },
+  "point":{
+    "liste":{
+      "titre":"Les points de contrôle",
+      "ajouter":"Nouveau..."
+    },
+    "edit":{
+      "titre-ajout":"Nouveau point de contrôle",
+      "titre-modif":"Détail du point"
     }
   }
 }

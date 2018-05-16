@@ -18,6 +18,10 @@ export class CategorieEditComponent implements OnInit {
   addMode :boolean = true;
   titreKey:string = '';
 
+  categoriesMere:UgoTreeNode[] = [];
+  categorie: CategorieDetail;
+  
+
   constructor(private modalActive: NgbActiveModal, private catSrv:CategorieService) { 
     this.setCategorie(new CategorieDetail());
   }
@@ -25,7 +29,6 @@ export class CategorieEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  categorie: CategorieDetail;
   setCategorie(cat:CategorieDetail){
     this.categorie = cat;
     this.addMode = _.isUndefined(cat.Id);
@@ -54,15 +57,6 @@ export class CategorieEditComponent implements OnInit {
       ()=>this.modalActive.close(this.categorie)
     );
   }
-
-
-
-
-
-
-  
-  categoriesMere:UgoTreeNode[] = [];
-
 
   searchNode(catId, source: UgoTreeNode[] = this.categoriesMere) {
       return UgoTreeNode.findTreeNodeByPredicate(source, (node) => node.id == catId);

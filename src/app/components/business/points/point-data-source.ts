@@ -3,7 +3,7 @@ import { GlobalInfo } from "../../../services/global-info.service";
 import { ReferentielBaseService } from "../../tools/referentiel-utils/referentiel-base-service";
 import { ReferentielPaginatorDataSource } from "../../tools/data-source/referentiel-paginator-data-source";
 
-export class PointsDataSource extends ReferentielPaginatorDataSource {
+export class PointDataSource extends ReferentielPaginatorDataSource {
     dataService: ReferentielBaseService;
     
     constructor(private pointSrv:PointService,private glo: GlobalInfo) {

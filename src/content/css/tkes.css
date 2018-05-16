@@ -148,6 +148,7 @@
 /**************************************************************************spécifique ugo-check-tree sous forme de form-control*/
 .check-list {
     overflow-y: auto;
+    min-height: 25px;
     max-height: 50vh;
     width: 100%;
     /* font-size: 16px;
@@ -193,18 +194,3 @@
         }
 
 
-
-
-
-
-
-/* body {
-    background-color: #EEF0F2;
-}
-
-.form-control[disabled],
-.form-control[readonly],
-fieldset[disabled] .form-control {
-    color: #78879B;
-} */
-        

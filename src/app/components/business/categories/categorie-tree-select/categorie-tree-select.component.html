@@ -1,0 +1,18 @@
+<div class="input-group">
+  <div class="form-control scroll-vertical" [ngClass]="{'check-list check-list-200':treeConfig.isEdit}" tabindex="0">
+      <span *ngIf="treeConfig.canShowWaitingFn()" class="loading-info">Connexion au serveur...</span>
+      <span *ngIf="treeConfig.canShowSelectionFn()" class="animate-show">{{treeConfig.editValue}}</span>
+      <span *ngIf="treeConfig.canShowPlaceHolderFn()" class="color-placeholder">Sélectionnez la catégorie</span>
+      <ugo-check-tree class="animate-show" *ngIf="treeConfig.canShowTreeFn()" [nodes]="treeConfig.tree" checkable="true" expandable="true" showRacine="true"
+        (onBeforeCheck)="beforeCheckAction($event)" (onAfterCheck)="afterCheckAction($event)">
+      </ugo-check-tree>
+  </div>
+  <div class="input-group-append">
+    <button *ngIf="!treeConfig.isEdit" [ngClass]="treeConfig.consultBtn.btnClass" type="button" [title]="treeConfig.consultBtn.title" (click)="treeConfig.onSwitchMode()">
+      <i [ngClass]="treeConfig.consultBtn.faClass"></i>
+      {{treeConfig.editBtn.caption}}</button>
+    <button *ngIf="treeConfig.isEdit" [ngClass]="treeConfig.editBtn.btnClass" type="button" [title]="treeConfig.editBtn.title" (click)="treeConfig.onSwitchMode()">
+      <i [ngClass]="treeConfig.editBtn.faClass"></i>
+      {{treeConfig.editBtn.caption}}</button>
+  </div>
+</div>
