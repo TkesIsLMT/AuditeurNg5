@@ -11,6 +11,7 @@ import { CategorieService } from '../../categories/categorie.service';
 import { CategorieDetail } from '../../categories/categorie-detail';
 import { CategorieEditComponent } from '../../categories/categorie-edit/categorie-edit.component';
 import { TypePoint } from '../../../../enums/type-point.enum';
+import { MessageService } from '../../../../services/message.service';
 
 @Component({
   selector: 'app-point-edit',
@@ -28,7 +29,7 @@ export class PointEditComponent implements OnInit {
   private unites$: Observable<string[]>;
   private selectedCategorie: CategorieDetail;
 
-  constructor(private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService) { 
+  constructor(private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService, private msg:MessageService) { 
     this.setPoint(new PointDetail());
     this.unites$ = pointSrv.uniteInCache.data;
   }
@@ -67,7 +68,8 @@ export class PointEditComponent implements OnInit {
 
     this.point.CategorieId = this.point.Categorie.Id;
     this.pointSrv.savePoint(this.point).subscribe(
-      ()=>this.modalActive.close(this.point)
+      ()=>this.modalActive.close(this.point),
+      (err) => this.msg.error(err)
     );
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService, IndividualConfig } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpErrorResponse } from '@angular/common/http';
 @Injectable()
 export class MessageService {
   defaultTitre :string;
@@ -35,8 +36,14 @@ export class MessageService {
       setTimeout(() => this.toastr.success(msg,titre,this.successOption));
     }
 
-    error(msg :string, titre = this.defaultTitre){
-      setTimeout(() => this.toastr.error(msg,titre, this.errorOption));
+    error(msg:string | HttpErrorResponse, titre = this.defaultTitre){
+      let message:string;
+      if (typeof(msg) === 'string'){
+        message = msg.toString();
+      } else {
+        message = msg.statusText + " : " + msg.error.ExceptionMessage;
+      }
+      setTimeout(() => this.toastr.error(message,titre, this.errorOption));
     }
 
     info(msg :string, titre = this.defaultTitre){

@@ -1,0 +1,23 @@
+<!-- <div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-cog"></i>
+      <span class="caret"></span>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div> -->
+
+<div class="btn-group">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        <i class="fas fa-cog"></i>
+        <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu">
+        <a *ngFor="let btn of buttons" href="" ng-click="onButtonClick(btn)" class="dropdown-item {{btn.btnClass}}" title="{{btn.title}}"><i class="{{btn.faClass}}"></i> {{btn.caption}}</a>
+    </div>
+</div>

@@ -42,6 +42,7 @@ import { UniteTravailTreeSelectComponent } from './components/business/unite-tra
 import { UniteTravailService } from './components/business/unite-travail/unite-travail.service';
 import { PiTreeSelectComponent } from './components/business/pi/pi-tree-select/pi-tree-select.component';
 import { PiService } from './components/business/pi/pi.service';
+import { ModalToolButtonComponent } from './components/tools/modal-tool-button/modal-tool-button.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { PiService } from './components/business/pi/pi.service';
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent, ModalToolButtonComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,

@@ -8,7 +8,7 @@
       </ugo-check-tree>
   </div>
   <div class="input-group-append">
-    <button *ngIf="!treeConfig.isEdit" [ngClass]="treeConfig.consultBtn.btnClass" type="button" [title]="treeConfig.consultBtn.title" (click)="treeConfig.onSwitchMode()">
+    <button *ngIf="!treeConfig.isEdit" [ngClass]="treeConfig.consultBtn.btnClass" type="button" [title]="treeConfig.consultBtn.title" (click)="treeConfig.onSwitchMode()" [disabled]="treeConfig.isBtnDisable()">
       <i [ngClass]="treeConfig.consultBtn.faClass"></i>
       {{treeConfig.editBtn.caption}}</button>
     <button *ngIf="treeConfig.isEdit" [ngClass]="treeConfig.editBtn.btnClass" type="button" [title]="treeConfig.editBtn.title" (click)="treeConfig.onSwitchMode()">

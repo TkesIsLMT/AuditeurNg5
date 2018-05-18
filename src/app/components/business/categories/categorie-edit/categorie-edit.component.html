@@ -32,7 +32,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="onCancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>
-    <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary"><i class="fas fa-edit"></i> Valider</button>
+        <app-modal-tool-button [buttons]="additionnalTools"></app-modal-tool-button>
+        <div class="flex-fake"> </div>
+        <button type="button" class="btn btn-secondary" (click)="onCancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>
+        <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary"><i class="fas fa-edit"></i> Valider</button>
   </div>
 </form>

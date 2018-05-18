@@ -7,6 +7,7 @@ import { CheckFieldDTI } from '../../../../models/check-field-dti';
 import * as _ from 'lodash';
 import { UgoTreeNode } from '../../../tools/ugo-check-tree/ugo-tree-node';
 import { map } from 'rxjs/operators';
+import { DynamicButton } from '../../../../utils/dynamic-button';
 
 @Component({
   selector: 'app-categorie-edit',
@@ -20,7 +21,7 @@ export class CategorieEditComponent implements OnInit {
 
   categoriesMere:UgoTreeNode[] = [];
   categorie: CategorieDetail;
-  
+  additionnalTools: DynamicButton[] = [{caption:"Désactiver",title:"Désactiver et conserver la catégorie sans la supprimer", faClass:"fas fa-ban", btnClass:"bg-gradient-warning"}];
 
   constructor(private modalActive: NgbActiveModal, private catSrv:CategorieService) { 
     this.setCategorie(new CategorieDetail());

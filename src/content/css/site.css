@@ -31,3 +31,7 @@ select option[disabled] {
 select option:not([disabled]) {
     color: initial !important;
 }
+
+.flex-fake{
+    flex-grow: 1;visibility: hidden;
+}

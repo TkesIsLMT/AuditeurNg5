@@ -1,6 +1,6 @@
 :host/deep/ ul {
     list-style-type: none;
-    /* padding-left: 30px; */
+    padding-left: 15px;
 }
 
 :host/deep/ .with-child {

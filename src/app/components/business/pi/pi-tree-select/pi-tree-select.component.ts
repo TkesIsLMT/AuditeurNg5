@@ -27,6 +27,8 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
   private startingNode:UgoTreeNode;
   private isFirstExpand = true;
   private selectedElement:PiDetail;
+  private isUserCheckAction = false;
+  private isLoadingBranche = false;
 
   constructor(private piSrv:PiService) { 
   }
@@ -38,9 +40,10 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.piwebid){
-        if (!_.isNil(this.piwebid))
+    if (changes.piwebid && changes.piwebid.currentValue != changes.piwebid.previousValue){
+        if (!_.isNil(this.piwebid)){
             this.loadStartingBranch();
+        }
     }
   }
 
@@ -73,10 +76,14 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
 
   finalizeLoading() {
     this.treeConfig.tree = this.racine.childs;
-    this.treeConfig.isLoading = false;
+    this.treeConfig.isLoading = this.isLoadingBranche; // false;
   }
 
   loadStartingBranch() {
+    if (this.isUserCheckAction) 
+        return;
+    this.treeConfig.isLoading = true;
+    this.isLoadingBranche = true;
     this.piSrv.getPiBranche(this.piwebid).subscribe(res => {
         this.startingBranch = res;
         let lstNodes = [];
@@ -98,19 +105,37 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
         this.startingRoot = _.find(lstNodes, n => n.parent === undefined );
         this.startingNode = _.find(lstNodes, ['id', this.piwebid]);
 
+        // if (this.startingNode){
+        //     let lstIdNode:string[] = _.map(lstNodes, n=>n.id);
+        //     let lstFindNode = new Array<UgoTreeNode>();
+        //     UgoTreeNode.foreachTreeNodeAction(this.racine.childs, item => { if (_.indexOf(lstIdNode,item.id)>=0) lstFindNode.push(item)});
+        //     if (lstFindNode.length > 0){
+        //         let lastNode = lstFindNode[lstFindNode.length-1];
+        //         let node = _.find(lstNodes, ['id', lastNode.id]);
+        //         if (node){
+        //             lastNode.childs = node.childs;
+        //             lastNode.additionalProperty.partialLoad = true;
+        //             UgoTreeNode.foreachTreeNodeAction(lastNode, n=>n.expanded = true,true);
+        //         }
+        //     }
+        //     this.changeCurrentElement(this.startingNode.value,false);
+        // }
+
         if (this.startingRoot) {
             var index = -1;
             for (var i = 0; i < this.racine.childs.length; i++) {
                 if (this.racine.childs[i].id === this.startingRoot.id)
                     index = i;
             }
-            if (index > 0) {
+            if (index > -1) {
                 this.racine.childs.splice(index, 1, this.startingRoot);
             }
             if (this.startingNode) {
                 this.changeCurrentElement(this.startingNode.value, false);
             }
         }
+        this.isUserCheckAction = false;
+        this.isLoadingBranche = false;
         this.finalizeLoading();
     },
     error => console.log(error));
@@ -180,6 +205,7 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
   }
 
   afterCheckAction = function (node:UgoTreeNode) {
+    this.isUserCheckAction = true;
     this.changeCurrentElement((node.checkable && node.checked) ? node.value : null, true);
 
 
