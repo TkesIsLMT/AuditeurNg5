@@ -38,6 +38,10 @@ import { UgoCheckTreeComponent } from './components/tools/ugo-check-tree/ugo-che
 import { PointEditComponent } from './components/business/points/point-edit/point-edit.component';
 import { CategorieTreeSelectComponent } from './components/business/categories/categorie-tree-select/categorie-tree-select.component';
 import { EnumToKeysPipe } from './pipes/enum-to-keys.pipe';
+import { UniteTravailTreeSelectComponent } from './components/business/unite-travail/unite-travail-tree-select/unite-travail-tree-select.component';
+import { UniteTravailService } from './components/business/unite-travail/unite-travail.service';
+import { PiTreeSelectComponent } from './components/business/pi/pi-tree-select/pi-tree-select.component';
+import { PiService } from './components/business/pi/pi.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,7 @@ import { EnumToKeysPipe } from './pipes/enum-to-keys.pipe';
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
@@ -83,7 +87,9 @@ import { EnumToKeysPipe } from './pipes/enum-to-keys.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: WinAuthInterceptor,
       multi: true
-    },GlobalInfo, MessageService, CategorieService, PointService],
+    },
+    GlobalInfo, MessageService,
+    CategorieService, PointService, UniteTravailService, PiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

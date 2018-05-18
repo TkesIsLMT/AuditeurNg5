@@ -6,5 +6,7 @@
 //49627
 export const environment = {
   production: false,
-  apiurl:'http://localhost:30600/api/'
+  apiurl:'http://localhost:30600/api/',
+  piRootWebId:'F1EmFun6tEop6E-Eb_Rh10ZR8guu94ejs0jkGpYAuJZ6FWmgSVNVR08wMDNcVUdPIERBVEFCQVNFXFVHTw',
+  piRootAddress:'\\\\ISUGO003\\UGO Database\\UGO\\'
 };

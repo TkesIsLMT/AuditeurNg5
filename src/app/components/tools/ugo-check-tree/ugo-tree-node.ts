@@ -16,6 +16,8 @@ export class UgoTreeNode {
     childs: UgoTreeNode[] = [];
     parent: UgoTreeNode;
     nodeClass:string = '';
+    hasDynamicChild: boolean;
+    additionalProperty: any = {};
 
     constructor(id:string, label:string, value:any = undefined, visible:boolean = true, checked:boolean = false, expanded:boolean = false, checkable:boolean = true, expandable:boolean = true){
         this.id = id;
@@ -31,7 +33,10 @@ export class UgoTreeNode {
 
 
     static foreachTreeNodeAction(starting:UgoTreeNode[] | UgoTreeNode, action:(UgoTreeNode)=>void, asc: boolean = false) {
-        var fn = asc ? UgoTreeNode.foreachTreeNodeActionAscendant : UgoTreeNode.foreachTreeNodeActionDescendant;
+        if(_.isUndefined(starting))
+            return;
+
+        const fn = asc ? UgoTreeNode.foreachTreeNodeActionAscendant : UgoTreeNode.foreachTreeNodeActionDescendant;
 
         if (_.isArray(starting)) {
             UgoTreeNode.foreachTabTreeNodeAction(starting, action, fn);
@@ -49,9 +54,11 @@ export class UgoTreeNode {
     }
 
     static foreachTreeNodeActionDescendant(startingNode:UgoTreeNode, action:(UgoTreeNode)=>void) {
-        action(startingNode);
-        if (startingNode.childs) {
-            UgoTreeNode.foreachTabTreeNodeAction(startingNode.childs, action, UgoTreeNode.foreachTreeNodeActionDescendant);
+        if (startingNode){
+            action(startingNode);
+            if (startingNode.childs) {
+                UgoTreeNode.foreachTabTreeNodeAction(startingNode.childs, action, UgoTreeNode.foreachTreeNodeActionDescendant);
+            }
         }
     }
 
@@ -61,6 +68,8 @@ export class UgoTreeNode {
 
     static findTreeNodeByPredicate(node: UgoTreeNode | UgoTreeNode[], predicate :(UgoTreeNode) => boolean): UgoTreeNode {
         let rst:UgoTreeNode;
+        if (_.isUndefined(node))
+            return rst;
         if (_.isArray(node)) {
             //on traite le tableau de racine initial ici
             for (var i = 0; i < node.length; i++) {

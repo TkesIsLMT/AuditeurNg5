@@ -23,15 +23,18 @@ export class PointEditComponent implements OnInit {
   titreKey:string = '';
 
   enumTypePoint = TypePoint;
+  listUnite:string[];
   private point: PointDetail;
-  //private categories$: Observable<CategorieDetail[]>;
+  private unites$: Observable<string[]>;
   private selectedCategorie: CategorieDetail;
 
   constructor(private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService) { 
     this.setPoint(new PointDetail());
+    this.unites$ = pointSrv.uniteInCache.data;
   }
 
   ngOnInit() {
+    this.unites$.subscribe(res=> this.listUnite = res);
   }
 
   setPoint(pt:PointDetail){

@@ -15,14 +15,16 @@ import { UgoTreeNode } from '../../tools/ugo-check-tree/ugo-tree-node';
 
 import * as _ from 'lodash';
 import { Subject } from 'rxjs/Subject';
+import { CacheGetter } from '../../../services/cache-getter';
 
 @Injectable()
 export class CategorieService extends ReferentielBaseService{
   private baseUrl = 'categorie';
-
+  categorieInCache: CacheGetter<CategorieDetail[]>;
   constructor(private http: HttpClient, msg: MessageService) { 
     super(msg);
     this.baseUrl = environment.apiurl + this.baseUrl;
+    this.categorieInCache = new CacheGetter<CategorieDetail[]>(this.getCategories.bind(this));
   }
   
   /**
@@ -30,12 +32,12 @@ export class CategorieService extends ReferentielBaseService{
    * @param categorie - La catégorie à modifier
    */
   saveCategorie(categorie :CategorieDetail){
-    this.forceReload();
+    this.categorieInCache.forceReload();
     return this.http.put(this.baseUrl, categorie, this.httpOptions);
   }
 
   deleteCategorie(categorie :ReferentielData | CategorieDetail | number){
-    this.forceReload();
+    this.categorieInCache.forceReload();
     const id = typeof categorie === "number" ? categorie : categorie.Id;
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete(url, this.httpOptions);
@@ -65,27 +67,9 @@ export class CategorieService extends ReferentielBaseService{
     return this.http.get<ReferentielPartialLoadingList>(this.baseUrl + '/find', options); 
   }
 
-  private cache$: Observable<CategorieDetail[]>;
-  private reload$ = new Subject<void>();
-
-  private forceReload(){
-    this.reload$.next();
-    this.cache$ = null;
-  }
-
-  get categories(){
-    if (!this.cache$) {
-      this.cache$ = this.getCategories().pipe(
-        takeUntil(this.reload$),
-        shareReplay(1)
-      );
-    }  
-
-    return this.cache$;
-  }
 
   get arbreCategorie(){
-    return this.categories.pipe(
+    return this.categorieInCache.data.pipe(
       map(o => _.map(o,(item)=> new UgoTreeNode(item.Id.toString(),item.Libelle,item)) ), /*transpose en ugotreenode*/
       map(o => //on refait la relation parent/enfant pour EACH noeud et on retourne un FILTER pour ne prendre que les racines (parent = null)
         _.filter( _.each(o,(item) => {

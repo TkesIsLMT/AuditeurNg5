@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { timer } from 'rxjs/observable/timer';
-import {map, catchError, observeOn, timeout, timeInterval} from "rxjs/operators";
+import {map, catchError, observeOn, timeout, timeInterval, takeUntil, shareReplay} from "rxjs/operators";
 import { ReferentielBaseService } from '../../tools/referentiel-utils/referentiel-base-service';
 import { ReferentielPartialLoadingList } from '../../tools/referentiel-utils/referentiel-partial-loading-list';
 import { PointDetail } from './point-detail';
@@ -11,25 +11,29 @@ import { CheckFieldDTI } from '../../../models/check-field-dti';
 import { MessageService } from '../../../services/message.service';
 import { ReferentielData } from '../../tools/referentiel-utils/referentiel-data';
 import { Subject } from 'rxjs/Subject';
+import { CacheGetter } from '../../../services/cache-getter';
 
 @Injectable()
 export class PointService  extends ReferentielBaseService{
   private baseUrl = 'point';
+  uniteInCache: CacheGetter<string[]>;
 
   constructor(private http: HttpClient,msg:MessageService) {
     super(msg);
     this.baseUrl = environment.apiurl + this.baseUrl;
+    this.uniteInCache = new CacheGetter<string[]>((this.getUnitesMesure.bind(this)));
+  }
+  private getUnitesMesure(): Observable<string[]>{
+    return this.http.get<string[]>(this.baseUrl + "/unitemesure", this.httpOptions);
   }
 
-  /**
-   * Permet d'ajouter / modifier un point de contrôle
-   * @param point - Le point à modifier
-   */
   savePoint(point :PointDetail){
+    this.uniteInCache.forceReload();
     return this.http.put(this.baseUrl, point, this.httpOptions);
   }
 
   deletePoint(point :ReferentielData | PointDetail | number){
+    this.uniteInCache.forceReload();
     const id = typeof point === "number" ? point : point.Id;
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete(url, this.httpOptions);
