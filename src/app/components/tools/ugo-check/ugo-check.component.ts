@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UgoCheckComponent {
   @Input() isSelected: boolean;
+  @Output() isSelectedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() isToggleOnKeypress: boolean = true;
   @Input() checkedClass: string = 'far fa-check-square';
   @Input() uncheckedClass: string = 'far fa-square';
@@ -14,8 +15,8 @@ export class UgoCheckComponent {
   @Output() onToggle :EventEmitter<any> = new EventEmitter();
 
   runOnToggle(){
-      console.log('emit onToggle');
       this.onToggle.emit(null);
+      this.isSelectedChange.emit(!this.isSelected);
   }
   runOnKeyDown(e) {
       console.log(e);
