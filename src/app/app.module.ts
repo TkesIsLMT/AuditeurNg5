@@ -32,7 +32,6 @@ import { WinAuthInterceptor } from './services/http-interceptor';
 import { CategorieEditComponent } from './components/business/categories/categorie-edit/categorie-edit.component';
 import { ShowErrorsComponent } from './components/tools/show-errors/show-errors.component';
 import { UniqueValidatorDirective } from './directives/unique-validator.directive';
-import { DeleteConfirmationDialogComponent } from './components/layout/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { UgoCheckComponent } from './components/tools/ugo-check/ugo-check.component';
 import { UgoCheckTreeComponent } from './components/tools/ugo-check-tree/ugo-check-tree.component';
 import { PointEditComponent } from './components/business/points/point-edit/point-edit.component';
@@ -43,6 +42,9 @@ import { UniteTravailService } from './components/business/unite-travail/unite-t
 import { PiTreeSelectComponent } from './components/business/pi/pi-tree-select/pi-tree-select.component';
 import { PiService } from './components/business/pi/pi.service';
 import { ModalToolButtonComponent } from './components/tools/modal-tool-button/modal-tool-button.component';
+import { DeleteConfirmationDialogComponent } from './components/layout/dialogs/delete-confirmation-dialog.component';
+import { DesactivateConfirmationDialogComponent } from './components/layout/dialogs/desactivate-confirmation-dialog.component';
+import { VisibleDynamicButtonPipe } from './pipes/visible-dynamic-button.pipe';
 
 @NgModule({
   declarations: [
@@ -55,10 +57,11 @@ import { ModalToolButtonComponent } from './components/tools/modal-tool-button/m
     PointListComponent,
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent, ModalToolButtonComponent,
+    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent, ModalToolButtonComponent, DesactivateConfirmationDialogComponent, VisibleDynamicButtonPipe,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
+    DesactivateConfirmationDialogComponent,
     CategorieEditComponent, PointEditComponent,
   ],
   imports: [

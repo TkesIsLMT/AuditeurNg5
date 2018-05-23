@@ -13,4 +13,5 @@ export enum MessageStandard {
     in_work= "Veuillez patientez, un traitement est en cours...",
 
     ask_del="Etes vous certain de vouloir supprimer cet enregistrement ?",
+    ask_desactivate="Etes vous certain de vouloir désactiver cet enregistrement ? Vous ne pourrez plus l'utiliser sauf pour la consultation des historiques",
 }

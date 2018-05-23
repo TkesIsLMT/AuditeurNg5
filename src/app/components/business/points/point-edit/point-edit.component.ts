@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { CheckFieldDTI } from '../../../../models/check-field-dti';
 import * as _ from 'lodash';
@@ -12,6 +12,10 @@ import { CategorieDetail } from '../../categories/categorie-detail';
 import { CategorieEditComponent } from '../../categories/categorie-edit/categorie-edit.component';
 import { TypePoint } from '../../../../enums/type-point.enum';
 import { MessageService } from '../../../../services/message.service';
+import { DynamicButton } from '../../../../utils/dynamic-button';
+import { MessageStandard } from '../../../../enums/message-standard.enum';
+import { DesactivateConfirmationDialogComponent } from '../../../layout/dialogs/desactivate-confirmation-dialog.component';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-point-edit',
@@ -19,17 +23,19 @@ import { MessageService } from '../../../../services/message.service';
   styleUrls: ['./point-edit.component.css']
 })
 export class PointEditComponent implements OnInit {
+  point: PointDetail = new PointDetail();
   pending :boolean = false;
   addMode :boolean = true;
-  titreKey:string = '';
+  titreKey:string = 'point.edit.titre.ajout';
 
   enumTypePoint = TypePoint;
   listUnite:string[];
-  private point: PointDetail;
+  additionnalTools: DynamicButton[] = [];
+
   private unites$: Observable<string[]>;
   private selectedCategorie: CategorieDetail;
 
-  constructor(private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService, private msg:MessageService) { 
+  constructor(private ref: ChangeDetectorRef, private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService, private msg:MessageService, private modalSrv:NgbModal) { 
     this.setPoint(new PointDetail());
     this.unites$ = pointSrv.uniteInCache.data;
   }
@@ -38,10 +44,37 @@ export class PointEditComponent implements OnInit {
     this.unites$.subscribe(res=> this.listUnite = res);
   }
 
+  private manageActivatation(state:boolean){
+    this.pointSrv.changePointState(this.point,state).subscribe(
+      ()=> {
+        this.point.IsEnable = state;
+        this.modalActive.close(this.point);
+      },
+      ()=>this.msg.error(MessageStandard.upd_nok));
+  }
+
+  onAdditionnalToolsClick(button:DynamicButton){
+    switch (button.key) {
+      case 'active':
+        this.manageActivatation(true);
+        break;
+      case 'desactive':
+        this.modalSrv.open(DesactivateConfirmationDialogComponent)
+          .result.then(x=> this.manageActivatation(false),()=>{/*rien à faire si l'utilisateur annule la suppression !*/});
+        break;
+      default:
+        console.log('clé de bouton inconnue');
+        break;
+    }
+  }
+
   setPoint(pt:PointDetail){
     this.point = pt;
     this.addMode = _.isUndefined(pt.Id);
     this.titreKey = `point.edit.titre-${this.addMode ? 'ajout':'modif'}`;
+    this.additionnalTools= [
+      {key:"active",caption:"Activer",title:"Ré-activer le point de contrôle", faClass:"fas fa-play", visible: !this.point.IsEnable},
+      {key:"desactive",caption:"Désactiver",title:"Désactiver et conserver le point de contrôle", faClass:"fas fa-pause", visible: this.point.IsEnable}];
   }
 
   isCodeUniqueFn(value: any){

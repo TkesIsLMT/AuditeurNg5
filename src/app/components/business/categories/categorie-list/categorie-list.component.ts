@@ -14,10 +14,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { MessageStandard } from '../../../../enums/message-standard.enum';
 import { CategorieEditComponent } from '../categorie-edit/categorie-edit.component';
-import { DeleteConfirmationDialogComponent } from '../../../layout/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { of } from 'rxjs/observable/of';
 import { DynamicButton } from '../../../../utils/dynamic-button';
 import { TranslateService } from '@ngx-translate/core';
+import { DeleteConfirmationDialogComponent } from '../../../layout/dialogs/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-categorie-list',
@@ -33,7 +33,7 @@ export class CategorieListComponent extends ReferentielListBaseComponent impleme
   constructor(private msg: MessageService, private categorieSrv: CategorieService, private globals: GlobalInfo,
       private modalService: NgbModal, private translate: TranslateService) { 
     super();
-    this.addBtn = { caption: '...', faClass: 'fas fa-plus', btnClass: 'btn btn-sm btn-primary', visible: true };
+    this.addBtn = {key:'add', caption: '...', faClass: 'fas fa-plus', btnClass: 'btn btn-sm btn-primary', visible: true };
     this.translate.get('categorie.liste.ajouter').subscribe(res=>this.addBtn.caption=res);
     // this.columnsToDisplay.push('Actions');
   }
@@ -70,7 +70,7 @@ export class CategorieListComponent extends ReferentielListBaseComponent impleme
 
   private majReussiCb(message:string, reload: boolean, item: CategorieDetail=undefined){
     if (!reload && !_.isUndefined(item))
-    _.assign(this.currentCategorie, _.pick(item, _.keys(this.currentCategorie)))
+      _.assign(this.currentCategorie, _.pick(item, _.keys(this.currentCategorie)))
     else if (reload){
       this.dataSource.loadPartialData();
     }

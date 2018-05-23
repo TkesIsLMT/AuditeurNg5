@@ -10,10 +10,10 @@ import { PointDetail } from "../point-detail";
 import { DynamicButton } from "../../../../utils/dynamic-button";
 import { MessageStandard } from "../../../../enums/message-standard.enum";
 import { PointEditComponent } from "../point-edit/point-edit.component";
-import { DeleteConfirmationDialogComponent } from "../../../layout/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import * as _ from 'lodash';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
+import { DeleteConfirmationDialogComponent } from "../../../layout/dialogs/delete-confirmation-dialog.component";
 
 @Component({
   selector: 'app-point-list',
@@ -31,7 +31,7 @@ export class PointListComponent extends ReferentielListBaseComponent implements 
   constructor(private msg: MessageService, private pointSrv: PointService, private globals: GlobalInfo,
       private modalService: NgbModal, private translate: TranslateService) { 
     super();
-    this.addBtn = { caption: '...', faClass: 'fas fa-plus', btnClass: 'btn btn-sm btn-primary', visible: true };
+    this.addBtn = {key:'add', caption: '...', faClass: 'fas fa-plus', btnClass: 'btn btn-sm btn-primary', visible: true };
     this.translate.get('point.liste.ajouter').subscribe(res=>this.addBtn.caption=res);
   }
 
@@ -72,7 +72,7 @@ export class PointListComponent extends ReferentielListBaseComponent implements 
 
   private majReussiCb(message:string, reload: boolean, item: PointDetail=undefined){
     if (!reload && !_.isUndefined(item))
-    _.assign(this.currentPoint, _.pick(item, _.keys(this.currentPoint)))
+      _.assign(this.currentPoint, _.pick(item, _.keys(this.currentPoint)))
     else if (reload){
       this.dataSource.loadPartialData();
     }

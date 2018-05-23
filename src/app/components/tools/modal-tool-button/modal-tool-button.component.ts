@@ -10,10 +10,10 @@ export class ModalToolButtonComponent implements OnInit {
   @Input() buttons:DynamicButton[];
   @Output() buttonClick: EventEmitter<DynamicButton>;
 
-  constructor() { }
+  constructor() { this.buttonClick = new EventEmitter<DynamicButton>();}
 
   ngOnInit() {
-    this.buttonClick = new EventEmitter<DynamicButton>();
+    
   }
 
   onButtonClick(btn:DynamicButton){

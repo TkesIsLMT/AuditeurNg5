@@ -10,5 +10,6 @@ export class CategorieDetail implements ReferentielData {
     Id: number;
     Code: string;
     Libelle: string;
+    IsEnable: boolean;
     CategorieMereId: number;
 }

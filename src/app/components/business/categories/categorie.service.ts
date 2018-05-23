@@ -67,6 +67,12 @@ export class CategorieService extends ReferentielBaseService{
     return this.http.get<ReferentielPartialLoadingList>(this.baseUrl + '/find', options); 
   }
 
+  changeCategorieState(categorie:CategorieDetail, newState:boolean) {
+    this.categorieInCache.forceReload();
+    const url: string = this.baseUrl +  (newState?'/enable/':'/disable/') + categorie.Id
+    return this.http.post<boolean>(url, undefined, this.httpOptions);
+  }
+
 
   get arbreCategorie(){
     return this.categorieInCache.data.pipe(

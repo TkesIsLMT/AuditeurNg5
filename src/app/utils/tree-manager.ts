@@ -11,8 +11,8 @@ export class TreeManager {
     canShowSelectionFn = this.showSelection;
     canShowPlaceHolderFn = this.showPlaceHolder;
     canShowTreeFn= this.showTree;
-    editBtn:DynamicButton = {caption:'',faClass: 'fas fa-minus',    btnClass: 'btn btn-secondary check-list-200',    title: 'Réduire et revenir en consultation...'};
-    consultBtn:DynamicButton = {caption:'',faClass: 'fas fa-ellipsis-h',    btnClass: 'btn btn-secondary',    title: 'Agrandir et activer la modification...'};
+    editBtn:DynamicButton = {key:'fermer',caption:'',faClass: 'fas fa-minus',    btnClass: 'btn btn-secondary check-list-200',    title: 'Réduire et revenir en consultation...'};
+    consultBtn:DynamicButton = {key:'ouvrir',caption:'',faClass: 'fas fa-ellipsis-h',    btnClass: 'btn btn-secondary',    title: 'Agrandir et activer la modification...'};
     onSwitchMode:()=>void;
     
     constructor(switchFn :any) {

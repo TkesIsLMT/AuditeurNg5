@@ -39,6 +39,11 @@ export class PointService  extends ReferentielBaseService{
     return this.http.delete(url, this.httpOptions);
   }
 
+  changePointState(point:PointDetail, newState:boolean) {
+    const url: string = this.baseUrl +  (newState?'/enable/':'/disable/') + point.Id
+    return this.http.post<boolean>(url, undefined, this.httpOptions);
+  }
+
   getPoint(id: number): Observable<PointDetail>{
     return this.http.get<PointDetail>(this.baseUrl + '/' + id, this.httpOptions);
   }

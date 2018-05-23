@@ -19,7 +19,7 @@ export class ReferentielTopTableComponent implements OnInit {
   showSearchInput :boolean = false;
   lastFilter:string='';
   constructor() {
-    this.addBtn = { caption: 'Ajouter', faClass: 'fas fa-plus', btnClass: 'btn btn-primary', visible: false };
+    this.addBtn = {key:'add', caption: 'Ajouter', faClass: 'fas fa-plus', btnClass: 'btn btn-primary', visible: false };
    }
 
   ngOnInit() {
