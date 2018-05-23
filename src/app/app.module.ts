@@ -44,20 +44,21 @@ import { PiService } from './components/business/pi/pi.service';
 import { ModalToolButtonComponent } from './components/tools/modal-tool-button/modal-tool-button.component';
 import { DeleteConfirmationDialogComponent } from './components/layout/dialogs/delete-confirmation-dialog.component';
 import { DesactivateConfirmationDialogComponent } from './components/layout/dialogs/desactivate-confirmation-dialog.component';
-import { VisibleDynamicButtonPipe } from './pipes/visible-dynamic-button.pipe';
+import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavigationComponent,
-    MainSectionComponent,
-    CategorieListComponent,
-    PointListComponent,
+    AppComponent, HeaderComponent, FooterComponent, NavigationComponent, MainSectionComponent,
+    CategorieListComponent, CategorieEditComponent, 
+    PointListComponent, PointEditComponent, 
     HomeComponent,
     NotFoundComponent,
-    ReferentielTopTableComponent,CustomPaginatorComponent, CategorieEditComponent, ShowErrorsComponent, UniqueValidatorDirective, DeleteConfirmationDialogComponent, UgoCheckComponent, UgoCheckTreeComponent, PointEditComponent, CategorieTreeSelectComponent, EnumToKeysPipe, UniteTravailTreeSelectComponent, PiTreeSelectComponent, ModalToolButtonComponent, DesactivateConfirmationDialogComponent, VisibleDynamicButtonPipe,
+    ReferentielTopTableComponent,CustomPaginatorComponent, ShowErrorsComponent, UniqueValidatorDirective, 
+    DeleteConfirmationDialogComponent, DesactivateConfirmationDialogComponent, 
+    UgoCheckComponent, UgoCheckTreeComponent, 
+    CategorieTreeSelectComponent, UniteTravailTreeSelectComponent, PiTreeSelectComponent, 
+    ModalToolButtonComponent, 
+    EnumToKeysPipe, LodashFilterPipe,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
