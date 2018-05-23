@@ -4,6 +4,6 @@
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu">
-        <a *ngFor="let btn of buttons | lodashFilter : {'visible': true}" [routerLink]="" (click)="onButtonClick(btn)" class="dropdown-item {{btn.btnClass}}" title="{{btn.title}}"><i class="{{btn.faClass}}"></i> {{btn.caption}}</a>
+        <a *ngFor="let btn of buttons | lodashFilter : {'visible': true }" [routerLink]="" (click)="onButtonClick(btn)" class="dropdown-item {{btn.btnClass}}" title="{{btn.title}}"><i class="{{btn.faClass}}"></i> {{btn.caption}}</a>
     </div>
 </div>

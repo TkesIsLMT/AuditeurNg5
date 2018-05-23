@@ -76,7 +76,7 @@ export class CategorieService extends ReferentielBaseService{
 
   get arbreCategorie(){
     return this.categorieInCache.data.pipe(
-      map(o => _.map(o,(item)=> new UgoTreeNode(item.Id.toString(),item.Libelle,item)) ), /*transpose en ugotreenode*/
+      map(o => _.map(o,(item)=> new UgoTreeNode(item.Id.toString(),item.Libelle,item,item.IsEnable)) ), /*transpose en ugotreenode*/
       map(o => //on refait la relation parent/enfant pour EACH noeud et on retourne un FILTER pour ne prendre que les racines (parent = null)
         _.filter( _.each(o,(item) => {
           const mere = _.find(o, ['id', _.isNil(item.value.CategorieMereId) ? '0':item.value.CategorieMereId.toString()]);

@@ -35,7 +35,7 @@ export class CategorieTreeSelectComponent implements OnInit,OnChanges {
       this.treeConfig.editValue = this.categorie.Code;
       TreeManager.searchNodeAndDo(this.categorie.Id, this.treeConfig.tree, n =>{
         n.checked = true;
-        UgoTreeNode.foreachTreeNodeAction(n, o=>o.expanded = true, true);
+        UgoTreeNode.foreachTreeNodeAction(n, o=>o.expanded = o.visible = true, true);
       });
     }
   }
