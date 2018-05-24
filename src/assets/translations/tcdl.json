@@ -29,5 +29,16 @@
       "titre-ajout":"Nouveau point de contrôle",
       "titre-modif":"Détail du point"
     }
+  },
+  "modele":{
+    "liste":{
+      "titre":"Les modèles d'inspection",
+      "ajouter":"Nouveau..."
+    },
+    "edit":{
+      "titre-ajout":"Nouveau point de contrôle",
+      "titre-modif":"Détail du point"
+    }
   }
+
 }

@@ -8,6 +8,7 @@ import { UniteTravail } from './unite-travail';
 import { map } from 'rxjs/operators';
 import { UgoTreeNode } from '../../tools/ugo-check-tree/ugo-tree-node';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UniteTravailService extends ServiceBase{
@@ -24,6 +25,10 @@ export class UniteTravailService extends ServiceBase{
     return this.http.get<UniteTravail[]>(this.baseUrl, this.httpOptions);
   }
   
+  // getUnite(id :number):Observable<UniteTravail>{
+  //   return this.uniteInCache.data.pipe(map(o=> _.find(o, ['Id', id])));
+  // }
+
   get arbreUniteTravail(){
     return this.uniteInCache.data.pipe(
       map(o => _.map(_.groupBy(o,'RegroupementId'), gp => {

@@ -45,6 +45,9 @@ import { ModalToolButtonComponent } from './components/tools/modal-tool-button/m
 import { DeleteConfirmationDialogComponent } from './components/layout/dialogs/delete-confirmation-dialog.component';
 import { DesactivateConfirmationDialogComponent } from './components/layout/dialogs/desactivate-confirmation-dialog.component';
 import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
+import { ModeleListComponent } from './components/business/modeles/modele-list/modele-list.component';
+import { ModeleService } from './components/business/modeles/modele.service';
+import { ModeleEditComponent } from './components/business/modeles/modele-edit/modele-edit.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,7 @@ import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
     UgoCheckComponent, UgoCheckTreeComponent, 
     CategorieTreeSelectComponent, UniteTravailTreeSelectComponent, PiTreeSelectComponent, 
     ModalToolButtonComponent, 
-    EnumToKeysPipe, LodashFilterPipe,
+    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
@@ -94,7 +97,7 @@ import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
       multi: true
     },
     GlobalInfo, MessageService,
-    CategorieService, PointService, UniteTravailService, PiService],
+    CategorieService, PointService, ModeleService, UniteTravailService, PiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

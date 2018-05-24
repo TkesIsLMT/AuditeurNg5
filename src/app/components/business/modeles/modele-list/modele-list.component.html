@@ -1,4 +1,4 @@
-<p class="h2">{{'point.liste.titre' | translate }}</p>
+<p class="h2">{{'modele.liste.titre' | translate }}</p>
 
 <app-referentiel-top-table [loading]="dataSource.loading$" (filterValueChange)="runFilter($event)"
 [addBtn]="addBtn" (toolClick)="openEdit()"></app-referentiel-top-table>
@@ -7,6 +7,10 @@
   <ng-container matColumnDef="Id">
     <mat-header-cell *matHeaderCellDef>UID</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Unite">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Unité</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.UniteLibelle}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="Code">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
@@ -17,10 +21,10 @@
     <mat-cell *matCellDef="let element"> {{element.Libelle}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="Active">
-      <mat-header-cell *matHeaderCellDef><span class="center-in-cell">Active</span></mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <ugo-check class="center-in-cell" [isSelected]="element.IsEnable"></ugo-check>
-      </mat-cell>
+    <mat-header-cell *matHeaderCellDef><span class="center-in-cell">Active</span></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <ugo-check class="center-in-cell" readonly [isSelected]="element.IsEnable"></ugo-check>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="Actions">
       <mat-header-cell *matHeaderCellDef><span class="center-in-cell">Actions</span></mat-header-cell>
