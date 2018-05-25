@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { CheckFieldDTI } from '../../../../models/check-field-dti';
@@ -35,7 +35,8 @@ export class PointEditComponent implements OnInit {
   private unites$: Observable<string[]>;
   private selectedCategorie: CategorieDetail;
 
-  constructor(private ref: ChangeDetectorRef, private modalActive: NgbActiveModal, private pointSrv:PointService, private catSrv:CategorieService, private msg:MessageService, private modalSrv:NgbModal) { 
+  constructor(private modalActive: NgbActiveModal, private modalSrv:NgbModal, private msg:MessageService, 
+      private pointSrv:PointService, private catSrv:CategorieService) { 
     this.setPoint(new PointDetail());
     this.unites$ = pointSrv.uniteInCache.data;
   }

@@ -1,3 +1,43 @@
-<p>
-  modele-edit works!
-</p>
+<p class="h4">{{ 'modele.edit.titre' | translate }}</p>
+<form (ngSubmit)="onSubmit(myForm)" autocomplete="off" #myForm="ngForm">
+  <div class="form-row">
+      <div class="form-group col-sm-3">
+        <label for="fldCode">Code</label>
+        <div>
+          <input type="text" class="form-control" 
+            id="fldCode" [(ngModel)]="modele.Code" name ="Code" #code="ngModel" placeholder="Saisissez un code"
+            required minlength="3" [uniqueValue]="isCodeUnique">
+          <app-show-errors [control]="code"></app-show-errors>
+        </div>
+      </div>
+      <div class="form-group col-sm-5">
+        <label for="fldLibelle">Libellé</label>
+        <div>
+          <input type="text" class="form-control" 
+            id="fldLibelle" [(ngModel)]="modele.Libelle" name="Libelle" #libelle="ngModel" placeholder="Obligatoire" 
+            required>
+          <app-show-errors [control]="libelle"></app-show-errors>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+          <label for="fldUniteTravail">Unité travail</label>
+          <div class="">
+            <app-unite-travail-tree-select id="fldUniteTravail" name="UniteTravail" #uniteTravail [unites]="unites" (unites)="onUnitesChante($event)" multiSelect="false">
+            </app-unite-travail-tree-select>
+            <app-show-errors [control]="uniteTravail"></app-show-errors>
+          </div>
+      </div>
+  </div>
+
+  <div class="">
+  <p class="h4">Conception <small>(Ajoutez des éléments dans l'arbre pour concevoir votre modèle)</small></p>
+  <app-element-base *ngFor="let ele of modele.Elements" [element]="ele"></app-element-base>
+  <app-element-add (add)="onAddElement($event)"></app-element-add>
+</div>
+<div class="app-toolbar">
+  <app-modal-tool-button [buttons]="additionnalTools" (buttonClick)="onAdditionnalToolsClick($event)"></app-modal-tool-button>
+  <div class="flex-fake"> </div>
+  <button type="button" class="btn btn-secondary" (click)="onCancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>
+  <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary"><i class="fas fa-edit"></i> Valider</button>
+</div>
+</form>

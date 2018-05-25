@@ -1,3 +1,4 @@
+<div class="container">
 <p class="h2">{{'modele.liste.titre' | translate }}</p>
 
 <app-referentiel-top-table [loading]="dataSource.loading$" (filterValueChange)="runFilter($event)"
@@ -44,3 +45,4 @@
 </mat-table>
 
 <app-custom-paginator [dataSource]="dataSource"></app-custom-paginator>
+</div>

@@ -7,11 +7,15 @@ import { ReferentielPartialLoadingList } from '../../tools/referentiel-utils/ref
 import { Observable } from 'rxjs/Observable';
 import { UniteTravailService } from '../unite-travail/unite-travail.service';
 import { ModeleDetail } from './modele-detail';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { ModeleListComponent } from './modele-list/modele-list.component';
 import "rxjs/add/observable/zip";
 import { UniteTravail } from '../unite-travail/unite-travail';
+import { Subject } from 'rxjs/Subject';
+import { timer } from 'rxjs/observable/timer';
+import { of } from 'rxjs/observable/of';
+import { CheckFieldDTI } from '../../../models/check-field-dti';
 
 @Injectable()
 export class ModeleService extends ReferentielBaseService {
@@ -46,6 +50,24 @@ export class ModeleService extends ReferentielBaseService {
     modele.UniteTravail = _.find(uts, ut=>ut.Id === modele.UniteTravailId);
     if (modele.UniteTravail)
       modele.UniteLibelle = modele.UniteTravail.Libelle;
+  }
+
+  getModele(id:number) :Observable<ModeleDetail>{
+    return this.http.get<ModeleDetail>([this.baseUrl, id].join('/'));
+  }
+
+  getOrInitModele(id:string) :Observable<ModeleDetail>{
+    if (!_.isNaN(id)){
+      return this.getModele(parseInt(id));
+    } else {
+      return of(new ModeleDetail());
+    }
+  }
+
+  isCodeUnique(dti: CheckFieldDTI){
+    return this.http.post<boolean>(this.baseUrl + '/codeunique', dti, this.httpOptions).pipe(
+      catchError(this.handleError<boolean>('isCodeUnique', false))
+    );
   }
 
 }

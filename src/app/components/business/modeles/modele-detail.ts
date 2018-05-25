@@ -1,5 +1,6 @@
 import { ReferentielData } from "../../tools/referentiel-utils/referentiel-data";
 import { UniteTravail } from "../unite-travail/unite-travail";
+import { ElementBase } from "./elements/element-base";
 
 export class ModeleDetail implements ReferentielData {
     constructor(Id=undefined, Code='',Libelle=''){
@@ -7,6 +8,7 @@ export class ModeleDetail implements ReferentielData {
         this.Code = Code;
         this.Libelle = Libelle;
         this.IsEnable = true;
+        this.Elements=[];
     }
     Id: number;
     Code: string;
@@ -16,4 +18,6 @@ export class ModeleDetail implements ReferentielData {
     UniteTravailId:number;
     UniteTravail?:UniteTravail;
     UniteLibelle?:string;
+
+    Elements:ElementBase[];
 }

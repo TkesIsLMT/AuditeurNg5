@@ -1,0 +1,6 @@
+<div [ngSwitch]="element.TypeElement">
+  <app-element-menu *ngSwitchCase="20" [element]="element"></app-element-menu>
+  <app-element-menu-item *ngSwitchCase="21" [element]="element"></app-element-menu-item>
+  <span *ngSwitchDefault>{{element.TypeElement}}</span>
+  <app-element-add [element]="element"></app-element-add>
+</div>

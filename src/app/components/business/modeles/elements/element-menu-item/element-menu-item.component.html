@@ -1,0 +1,6 @@
+<div>
+  <label *ngIf="!isEditMode">{{element.Libelle}}</label>
+  <input *ngIf="isEditMode"type="text" class="form-control-sm" [(ngModel)]="element.Libelle" />
+  <button class="btn btn-primary" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
+  <app-element-base *ngFor="let ele of element.childs" [element]="ele"></app-element-base>
+</div>

@@ -12,6 +12,7 @@ import { MessageService } from '../../../services/message.service';
 import { ReferentielData } from '../../tools/referentiel-utils/referentiel-data';
 import { Subject } from 'rxjs/Subject';
 import { CacheGetter } from '../../../services/cache-getter';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class PointService  extends ReferentielBaseService{
@@ -52,9 +53,7 @@ export class PointService  extends ReferentielBaseService{
     if (id){
       return this.getPoint(id);
     } else {
-      let obs = new Subject<PointDetail>();
-      timer(1).pipe(map(o=>obs.next(new PointDetail())));
-      return obs;
+      return of(new PointDetail());
     }
   }
 

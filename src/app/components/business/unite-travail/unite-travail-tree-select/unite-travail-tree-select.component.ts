@@ -12,6 +12,7 @@ import { UniteTravailService } from '../unite-travail.service';
 })
 export class UniteTravailTreeSelectComponent implements OnInit, OnChanges {
   @Input() unites: number[];
+  @Input() multiSelect:boolean = true;
   @Output() unitesChange: EventEmitter<number[]> = new EventEmitter<number[]>();
 
   treeConfig:TreeManager;
@@ -64,7 +65,10 @@ export class UniteTravailTreeSelectComponent implements OnInit, OnChanges {
   }
 
   beforeCheckAction = function (node) {
-  }
+    if (!this.multiSelect || node.checked)
+      return;
+    _.each(this.treeConfig.tree, (el) => UgoTreeNode.foreachTreeNodeAction(el, (n) => n.checked = false));
+}
 
   setEditValue(){
     this.findSelectedNodes();

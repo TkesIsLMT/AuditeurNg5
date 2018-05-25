@@ -1,0 +1,11 @@
+.app-toolbar{
+    border-top: 1px solid #ced4da;
+    margin-top:10px;
+    margin-bottom:10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: end;
+}
+.app-toolbar > :not(:first-child) {
+    margin-left:5px;
+}

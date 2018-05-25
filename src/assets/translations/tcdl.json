@@ -36,8 +36,7 @@
       "ajouter":"Nouveau..."
     },
     "edit":{
-      "titre-ajout":"Nouveau point de contrôle",
-      "titre-modif":"Détail du point"
+      "titre":"Modèle d'inspection"
     }
   }
 

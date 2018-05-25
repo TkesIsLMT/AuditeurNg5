@@ -48,6 +48,10 @@ import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
 import { ModeleListComponent } from './components/business/modeles/modele-list/modele-list.component';
 import { ModeleService } from './components/business/modeles/modele.service';
 import { ModeleEditComponent } from './components/business/modeles/modele-edit/modele-edit.component';
+import { ElementBaseComponent } from './components/business/modeles/elements/element-base/element-base.component';
+import { ElementMenuComponent } from './components/business/modeles/elements/element-menu/element-menu.component';
+import { ElementAddComponent } from './components/business/modeles/elements/element-add/element-add.component';
+import { ElementMenuItemComponent } from './components/business/modeles/elements/element-menu-item/element-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,7 @@ import { ModeleEditComponent } from './components/business/modeles/modele-edit/m
     UgoCheckComponent, UgoCheckTreeComponent, 
     CategorieTreeSelectComponent, UniteTravailTreeSelectComponent, PiTreeSelectComponent, 
     ModalToolButtonComponent, 
-    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent,
+    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent, ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,

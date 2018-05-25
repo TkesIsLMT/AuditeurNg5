@@ -1,0 +1,10 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        <i class="fas fa-plus"></i>
+        <span>{{caption}}</span>
+        <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu">
+        <span *ngFor="let typ of types" (click)="selectType(typ)" class="dropdown-item">{{typeElementToString(typ)}}</span>
+    </div>
+</div>
