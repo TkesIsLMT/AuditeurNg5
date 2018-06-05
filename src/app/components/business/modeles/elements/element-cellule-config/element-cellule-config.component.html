@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h5 class="modal-title">Configuration de la cellule</h5>
+  </div>
+  <form (ngSubmit)="submit(myForm)" autocomplete="off" #myForm="ngForm">
+    <div class="modal-body">
+      <div *ngIf="showLibelle()" class="form-group row">
+          <label for="fldLibelle" class="col-sm-4 col-form-label">Libellé </label>
+          <div class="col-sm-8">
+              <input id="fldLibelle" class="form-control" name="Libelle" #libelle="ngModel" [(ngModel)]="element.Libelle">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="fldPoint" class="col-sm-4 col-form-label">Point de contrôle </label>
+          <div class="col-sm-8">
+              <select id="fldPoint" class="form-control" name="Point" #point="ngModel" (change)="changePoint()" [(ngModel)]="selectedPointControle" [compareWith]="comparePoint" required  [ngClass]="{'color-placeholder': notPoint() }">
+                  <option *ngIf="notPoint()" disabled [ngValue]="undefined">Sélectionnez un point de contrôle</option>
+                  <option *ngFor="let pc of points$ | async" [ngValue]="pc">{{ pc.Code + ' - ' + pc.Libelle}}</option>
+              </select>
+              <app-show-errors [control]="point"></app-show-errors>
+          </div>
+      </div>
+      <div class="form-group row">
+          <ugo-check [(isSelected)]="element.EstObligatoire" class="col" id="fldEstObligatoire" name="EstObligatoire">Obligatoire ?</ugo-check>
+          <ugo-check [(isSelected)]="element.EstCommentable" class="col" id="fldEstCommentable" name="EstCommentable">Commentable ?</ugo-check>
+          <ugo-check [(isSelected)]="element.EstLiableATL" class="col" id="fldEstLiableATL" name="EstLiableATL">Liable à ATL ?</ugo-check>
+      </div>
+    </div>
+    <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>
+          <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary"><i class="fas fa-edit"></i> Valider</button>
+    </div>
+  </form>

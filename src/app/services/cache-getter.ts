@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
-import { takeUntil, shareReplay } from "rxjs/operators";
+import { takeUntil, shareReplay, map } from "rxjs/operators";
 
 export class CacheGetter<T>{
 
@@ -21,7 +21,7 @@ export class CacheGetter<T>{
       }  
       return this.cache$;
     }
-  
+
     private getData:()=>Observable<T>;
     constructor(getDataFn:()=>Observable<T>){
         this.getData = getDataFn;

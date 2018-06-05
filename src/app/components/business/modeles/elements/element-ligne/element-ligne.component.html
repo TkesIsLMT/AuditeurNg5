@@ -1,0 +1,8 @@
+<div class="d-flex w-100">
+    <input type="text" class="form-control form-control-sm mr-1" [(ngModel)]="element.Libelle" />
+    <div class="btn-group btn-group-sm ml-1" role="group">
+        <button type="button" class="btn btn-outline-secondary" title="Ajouter une cellule" (click)="addCellule()"><i class="fas fa-plus"></i></button>
+    </div>
+    <app-element-standard-action [element]="element" [showEdit]="false"></app-element-standard-action>
+</div>
+<app-element-base *ngFor="let ele of element.childs" [element]="ele"></app-element-base>

@@ -16,14 +16,17 @@ import { Subject } from 'rxjs/Subject';
 import { timer } from 'rxjs/observable/timer';
 import { of } from 'rxjs/observable/of';
 import { CheckFieldDTI } from '../../../models/check-field-dti';
+import { CacheGetter } from '../../../services/cache-getter';
 
 @Injectable()
 export class ModeleService extends ReferentielBaseService {
   private baseUrl = 'modeleinspection';
+  modeleInCache: CacheGetter<ModeleDetail[]>;
 
   constructor(private http: HttpClient, msg: MessageService, private utSrv: UniteTravailService) { 
     super(msg);
     this.baseUrl = environment.apiurl + this.baseUrl;
+    this.modeleInCache= new CacheGetter<ModeleDetail[]>(this.getModeles.bind(this));
   }
 
   findData(filter='', sortColumn='', sortAsc=true, pageNumber=0, pageSize=5): Observable<ReferentielPartialLoadingList> {
@@ -52,12 +55,16 @@ export class ModeleService extends ReferentielBaseService {
       modele.UniteLibelle = modele.UniteTravail.Libelle;
   }
 
+  private getModeles():Observable<ModeleDetail[]>{
+    return this.http.get<ModeleDetail[]>(this.baseUrl, this.httpOptions);
+  }
+
   getModele(id:number) :Observable<ModeleDetail>{
-    return this.http.get<ModeleDetail>([this.baseUrl, id].join('/'));
+    return this.http.get<ModeleDetail>([this.baseUrl, id].join('/'), this.httpOptions);
   }
 
   getOrInitModele(id:string) :Observable<ModeleDetail>{
-    if (!_.isNaN(id)){
+    if (!_.isNaN(id) && id !== null){
       return this.getModele(parseInt(id));
     } else {
       return of(new ModeleDetail());
@@ -69,5 +76,9 @@ export class ModeleService extends ReferentielBaseService {
       catchError(this.handleError<boolean>('isCodeUnique', false))
     );
   }
-
+  
+  saveModele(dti: ModeleDetail){
+    this.modeleInCache.forceReload();    
+    return this.http.put(this.baseUrl, dti, this.httpOptions);
+  }
 }

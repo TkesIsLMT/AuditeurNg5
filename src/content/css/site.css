@@ -35,3 +35,7 @@ select option:not([disabled]) {
 .flex-fake{
     flex-grow: 1;visibility: hidden;
 }
+
+ul.no-style{
+    list-style: none;
+}

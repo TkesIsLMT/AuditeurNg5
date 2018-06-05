@@ -56,8 +56,13 @@ export class ModeleListComponent extends ReferentielListBaseComponent implements
     //   ()=>this.msg.error(MessageStandard.del_nok));
   }
 
+
   openEdit(item:ModeleDetail = undefined){
-    this.router.navigate(['modeles', item.Id]);
+    if (item){
+      this.router.navigate(['modeles', item.Id]);
+    } else {
+      this.router.navigate(['modeles','new']);
+    }
     
     // const isAdd = _.isUndefined(item);
     // const mdForm = this.modalService.open(ModeleEditComponent, { centered: true, size:'lg' });

@@ -19,10 +19,10 @@ export class UniteTravailTreeSelectComponent implements OnInit, OnChanges {
   private selectedNodes = new Array<UgoTreeNode>();
 
   constructor(private uniteSrv:UniteTravailService) { 
+    this.treeConfig = new TreeManager(this.toggleEditMode.bind(this));
   }
 
   ngOnInit() {
-      this.treeConfig = new TreeManager(this.toggleEditMode.bind(this));
       this.loadData();
       this.toggleEditMode(false);
   }
@@ -65,7 +65,7 @@ export class UniteTravailTreeSelectComponent implements OnInit, OnChanges {
   }
 
   beforeCheckAction = function (node) {
-    if (!this.multiSelect || node.checked)
+    if (this.multiSelect || (this.multiSelect && node.checked))
       return;
     _.each(this.treeConfig.tree, (el) => UgoTreeNode.foreachTreeNodeAction(el, (n) => n.checked = false));
 }

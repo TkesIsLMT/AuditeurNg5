@@ -1,6 +1,6 @@
-<div>
-  <label *ngIf="!isEditMode">{{element.Libelle}}</label>
-  <input *ngIf="isEditMode"type="text" class="form-control-sm" [(ngModel)]="element.Libelle" />
-  <button class="btn btn-primary" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
+  <div class="d-flex w-100">
+      <input type="text" class="form-control form-control-sm mr-1 col" [(ngModel)]="element.Libelle" />
+      <app-element-add class="ml-1" [captionVisible]="false" [element]="element"></app-element-add>
+      <app-element-standard-action [element]="element" [showEdit]="false"></app-element-standard-action>
+  </div>
   <app-element-base *ngFor="let ele of element.childs" [element]="ele"></app-element-base>
-</div>

@@ -4,18 +4,19 @@ import { TypeElement } from '../../../../../enums/type-element.enum';
 import { ElementService } from '../element.service';
 
 @Component({
-  selector: 'app-element-menu',
-  templateUrl: './element-menu.component.html',
-  styleUrls: ['./element-menu.component.css']
+  selector: 'app-element-ligne',
+  templateUrl: './element-ligne.component.html',
+  styleUrls: ['./element-ligne.component.css']
 })
-export class ElementMenuComponent implements OnInit {
+export class ElementLigneComponent implements OnInit {
   @Input() element:ElementBase;
+
   constructor(private eleSrv:ElementService) { }
 
   ngOnInit() {
   }
 
-  addItem(){
-    this.eleSrv.addNouvelElement(this.element,TypeElement.MenuItem);
+  addCellule(){
+    this.eleSrv.addNouvelElement(this.element, TypeElement.Cellule);
   }
 }

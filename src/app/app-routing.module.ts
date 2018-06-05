@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'categories', component: CategorieListComponent },
   { path: 'points', component: PointListComponent },
   { path: 'modeles', component: ModeleListComponent },
+  { path: 'modeles/new', component: ModeleEditComponent },
   { path: 'modeles/:id', component: ModeleEditComponent },
   { path: '**', component: NotFoundComponent },
 ];

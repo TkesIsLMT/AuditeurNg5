@@ -52,6 +52,15 @@ import { ElementBaseComponent } from './components/business/modeles/elements/ele
 import { ElementMenuComponent } from './components/business/modeles/elements/element-menu/element-menu.component';
 import { ElementAddComponent } from './components/business/modeles/elements/element-add/element-add.component';
 import { ElementMenuItemComponent } from './components/business/modeles/elements/element-menu-item/element-menu-item.component';
+import { ElementTableauComponent } from './components/business/modeles/elements/element-tableau/element-tableau.component';
+import { ElementLigneComponent } from './components/business/modeles/elements/element-ligne/element-ligne.component';
+import { ElementCelluleComponent } from './components/business/modeles/elements/element-cellule/element-cellule.component';
+import { WindowService } from './services/window.service';
+import { ElementTableauConfigComponent } from './components/business/modeles/elements/element-tableau-config/element-tableau-config.component';
+import { ElementCelluleConfigComponent } from './components/business/modeles/elements/element-cellule-config/element-cellule-config.component';
+import { ElementStandardActionComponent } from './components/business/modeles/elements/element-standard-action/element-standard-action.component';
+import { ElementSousModeleComponent } from './components/business/modeles/elements/element-sous-modele/element-sous-modele.component';
+import { ElementSousModeleConfigComponent } from './components/business/modeles/elements/element-sous-modele-config/element-sous-modele-config.component';
 
 @NgModule({
   declarations: [
@@ -65,12 +74,13 @@ import { ElementMenuItemComponent } from './components/business/modeles/elements
     UgoCheckComponent, UgoCheckTreeComponent, 
     CategorieTreeSelectComponent, UniteTravailTreeSelectComponent, PiTreeSelectComponent, 
     ModalToolButtonComponent, 
-    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent, ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent,
+    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent, ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
     DesactivateConfirmationDialogComponent,
     CategorieEditComponent, PointEditComponent,
+    ElementTableauConfigComponent,ElementCelluleConfigComponent,ElementSousModeleConfigComponent,
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
@@ -100,6 +110,7 @@ import { ElementMenuItemComponent } from './components/business/modeles/elements
       useClass: WinAuthInterceptor,
       multi: true
     },
+    WindowService,
     GlobalInfo, MessageService,
     CategorieService, PointService, ModeleService, UniteTravailService, PiService],
   bootstrap: [AppComponent]

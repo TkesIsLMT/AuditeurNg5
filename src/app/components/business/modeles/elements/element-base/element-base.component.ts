@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ElementBase } from '../element-base';
 import { TypeElement } from '../../../../../enums/type-element.enum';
+import * as _ from 'lodash';
+import { ModeleDetail } from '../../modele-detail';
+import { PointDetail } from '../../../points/point-detail';
 
 @Component({
   selector: 'app-element-base',
@@ -9,8 +12,29 @@ import { TypeElement } from '../../../../../enums/type-element.enum';
 })
 export class ElementBaseComponent implements OnInit {
   @Input() element:ElementBase;
+  @Input() modele:ModeleDetail;
+  @Input() sousModele:ModeleDetail[]=[];
+  private isExpanded:boolean = true;
+  
   constructor() { }
 
   ngOnInit() {
+
   }
+
+  titreElement(){
+    let str = '';
+    if (this.element){
+      if (this.element.Libelle) {
+        str += this.element.Libelle;
+      } else {
+        str += TypeElement[this.element.TypeElement];
+      } 
+      if (this.element.childs) {
+        str += ` (${this.element.childs.length} sous-élément/s)`;
+      }
+    }
+    return str;
+  }
+
 }

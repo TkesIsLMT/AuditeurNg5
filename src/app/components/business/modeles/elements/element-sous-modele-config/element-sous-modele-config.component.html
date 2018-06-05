@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h5 class="modal-title">Configuration du sous modèle</h5>
+  </div>
+  <form (ngSubmit)="submit(myForm)" autocomplete="off" #myForm="ngForm">
+    <div class="modal-body">
+      <div class="form-group row">
+          <label for="fldModele" class="col-sm-4 col-form-label">Modèle </label>
+          <div class="col-sm-8">
+              <select id="fldModele" class="form-control" name="Modele" #modele="ngModel" [(ngModel)]="selectedModele" [compareWith]="compareModele" required  [ngClass]="{'color-placeholder': notModele() }">
+                  <option *ngIf="notModele()" disabled [ngValue]="undefined">Sélectionnez un modèle</option>
+                  <option *ngFor="let mod of sousModeleDispo" [ngValue]="mod">{{ mod.Code + ' - ' + mod.Libelle}}</option>
+              </select>
+              <app-show-errors [control]="modele"></app-show-errors>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancel('cancel button click')"><i class="fas fa-undo-alt"></i> Annuler</button>
+          <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary"><i class="fas fa-edit"></i> Valider</button>
+    </div>
+  </form>

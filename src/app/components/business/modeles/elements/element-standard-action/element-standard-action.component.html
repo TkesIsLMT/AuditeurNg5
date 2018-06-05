@@ -1,0 +1,7 @@
+<div class="btn-group btn-group-sm ml-1" role="group">
+    <button *ngIf="showEdit" type="button" class="btn btn-outline-primary" title="Editer" (click)="edit()"><i class="fas fa-edit"></i></button>
+    <button *ngIf="showUp" type="button" class="btn btn-outline-primary" title="Remonter" (click)="up()"><i class="fas fa-chevron-up"></i></button>
+    <button *ngIf="showDown" type="button" class="btn btn-outline-primary" title="Descendre" (click)="down()"><i class="fas fa-chevron-down"></i></button>
+    <button *ngIf="showClear" type="button" class="btn btn-outline-danger" title="Vider" (click)="clear()"><i class="fas fa-ban"></i></button>
+    <button *ngIf="showDelete" type="button" class="btn btn-outline-danger" title="Supprimer" (click)="delete()"><i class="fas fa-trash"></i></button>
+</div>

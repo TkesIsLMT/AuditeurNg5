@@ -1,8 +1,8 @@
-Menu
-Début:
-<ul>
-  <li *ngFor="let ele of element.childs">
-    <app-element-base [element]="ele"></app-element-base>
-  </li>
-</ul>
-:Fin
+<div class="d-flex">
+    <span class="my-auto mr-1 col">Menu</span>
+    <div class="btn-group btn-group-sm ml-1" role="group">
+        <button type="button" class="btn btn-outline-secondary" title="Ajouter un sous menu" (click)="addItem()"><i class="fas fa-plus"></i></button>
+    </div>
+    <app-element-standard-action [element]="element" [showEdit]="false"></app-element-standard-action>
+</div>
+<app-element-base *ngFor="let ele of element.childs" [element]="ele"></app-element-base>

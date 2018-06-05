@@ -8,13 +8,9 @@ import { ElementBase } from '../element-base';
 })
 export class ElementMenuItemComponent implements OnInit {
   @Input() element:ElementBase;
-  isEditMode:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
-  }
-
-  toggleEdit(){
-    this.isEditMode = !this.isEditMode;
   }
 }

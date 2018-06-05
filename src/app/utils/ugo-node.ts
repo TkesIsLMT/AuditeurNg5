@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-export abstract class UgoNode{
+export abstract class UgoNode {
     constructor(id:any = 0){
         this.nodeId = id;
     }
@@ -24,4 +24,11 @@ export abstract class UgoNode{
         return child;
     }
     
+    static aplatirArbre<T extends UgoNode>(source:T[]):T[]{
+        let sortie = new Array<T>();
+        _.each(source, s => {
+            sortie = _.concat(sortie, s, this.aplatirArbre<T>(s.childs as T[]));
+        })
+        return sortie;
+    }
 }

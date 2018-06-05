@@ -1,0 +1,8 @@
+<div class="d-flex w-100">
+    <span class="my-auto mr-1 col">Tableau</span>
+    <div class="btn-group btn-group-sm ml-1" role="group">
+        <button type="button" class="btn btn-outline-secondary" title="Ajouter une ligne" (click)="addLigne()"><i class="fas fa-plus"></i></button>
+    </div>
+    <app-element-standard-action [element]="element" (doAction)="do($event)"></app-element-standard-action>
+</div>
+<app-element-base *ngFor="let ele of element.childs" [element]="ele"></app-element-base>

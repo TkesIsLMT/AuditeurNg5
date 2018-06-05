@@ -4,7 +4,6 @@ export enum TypeElement {
     MenuItem = 21,
     Tableau = 30,
     Ligne = 31,
-    Cellule = 32,
     Schema = 40,
-    SchemaPoint = 41,
+    Cellule = 50,
 }

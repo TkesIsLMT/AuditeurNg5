@@ -18,11 +18,13 @@ import { of } from 'rxjs/observable/of';
 export class PointService  extends ReferentielBaseService{
   private baseUrl = 'point';
   uniteInCache: CacheGetter<string[]>;
+  pointInCache: CacheGetter<PointDetail[]>;
 
   constructor(private http: HttpClient,msg:MessageService) {
     super(msg);
     this.baseUrl = environment.apiurl + this.baseUrl;
     this.uniteInCache = new CacheGetter<string[]>((this.getUnitesMesure.bind(this)));
+    this.pointInCache = new CacheGetter<PointDetail[]>((this.getPoints.bind(this)));
   }
   private getUnitesMesure(): Observable<string[]>{
     return this.http.get<string[]>(this.baseUrl + "/unitemesure", this.httpOptions);
@@ -30,11 +32,13 @@ export class PointService  extends ReferentielBaseService{
 
   savePoint(point :PointDetail){
     this.uniteInCache.forceReload();
+    this.pointInCache.forceReload();
     return this.http.put(this.baseUrl, point, this.httpOptions);
   }
 
   deletePoint(point :ReferentielData | PointDetail | number){
     this.uniteInCache.forceReload();
+    this.pointInCache.forceReload();
     const id = typeof point === "number" ? point : point.Id;
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete(url, this.httpOptions);
@@ -57,7 +61,7 @@ export class PointService  extends ReferentielBaseService{
     }
   }
 
-  getPoints(): Observable<PointDetail[]>{
+  private getPoints(): Observable<PointDetail[]>{
     return this.http.get<PointDetail[]>(this.baseUrl, this.httpOptions);
   }
 
