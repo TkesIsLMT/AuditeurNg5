@@ -49,19 +49,19 @@ import { LodashFilterPipe } from './pipes/lodash-filter.pipe';
 import { ModeleListComponent } from './components/business/modeles/modele-list/modele-list.component';
 import { ModeleService } from './components/business/modeles/modele.service';
 import { ModeleEditComponent } from './components/business/modeles/modele-edit/modele-edit.component';
-import { ElementBaseComponent } from './components/business/modeles/conception/elements/element-base/element-base.component';
-import { ElementMenuComponent } from './components/business/modeles/conception/elements/element-menu/element-menu.component';
-import { ElementAddComponent } from './components/business/modeles/conception/elements/element-add/element-add.component';
-import { ElementMenuItemComponent } from './components/business/modeles/conception/elements/element-menu-item/element-menu-item.component';
-import { ElementTableauComponent } from './components/business/modeles/conception/elements/element-tableau/element-tableau.component';
-import { ElementLigneComponent } from './components/business/modeles/conception/elements/element-ligne/element-ligne.component';
-import { ElementCelluleComponent } from './components/business/modeles/conception/elements/element-cellule/element-cellule.component';
+import { ElementBaseComponent } from './components/business/modeles/conception/element-base/element-base.component';
+import { ElementMenuComponent } from './components/business/modeles/conception/element-menu/element-menu.component';
+import { ElementAddComponent } from './components/business/modeles/conception/element-add/element-add.component';
+import { ElementMenuItemComponent } from './components/business/modeles/conception/element-menu-item/element-menu-item.component';
+import { ElementTableauComponent } from './components/business/modeles/conception/element-tableau/element-tableau.component';
+import { ElementLigneComponent } from './components/business/modeles/conception/element-ligne/element-ligne.component';
+import { ElementCelluleComponent } from './components/business/modeles/conception/element-cellule/element-cellule.component';
 import { WindowService } from './services/window.service';
-import { ElementTableauConfigComponent } from './components/business/modeles/conception/elements/element-tableau-config/element-tableau-config.component';
-import { ElementCelluleConfigComponent } from './components/business/modeles/conception/elements/element-cellule-config/element-cellule-config.component';
-import { ElementStandardActionComponent } from './components/business/modeles/conception/elements/element-standard-action/element-standard-action.component';
-import { ElementSousModeleComponent } from './components/business/modeles/conception/elements/element-sous-modele/element-sous-modele.component';
-import { ElementSousModeleConfigComponent } from './components/business/modeles/conception/elements/element-sous-modele-config/element-sous-modele-config.component';
+import { ElementTableauConfigComponent } from './components/business/modeles/conception/element-tableau-config/element-tableau-config.component';
+import { ElementCelluleConfigComponent } from './components/business/modeles/conception/element-cellule-config/element-cellule-config.component';
+import { ElementStandardActionComponent } from './components/business/modeles/conception/element-standard-action/element-standard-action.component';
+import { ElementSousModeleComponent } from './components/business/modeles/conception/element-sous-modele/element-sous-modele.component';
+import { ElementSousModeleConfigComponent } from './components/business/modeles/conception/element-sous-modele-config/element-sous-modele-config.component';
 
 @NgModule({
   declarations: [

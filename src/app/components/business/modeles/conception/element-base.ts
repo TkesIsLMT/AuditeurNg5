@@ -1,8 +1,8 @@
-import { TypeElement } from "../../../../../enums/type-element.enum";
-import { UgoNode } from "../../../../../utils/ugo-node";
+import { TypeElement } from "../../../../enums/type-element.enum";
+import { UgoNode } from "../../../../utils/ugo-node";
 import * as _ from 'lodash';
-import { PointDetail } from "../../../points/point-detail";
-import { ModeleDetail } from "../../modele-detail";
+import { PointDetail } from "../../points/point-detail";
+import { ModeleDetail } from "../modele-detail";
 
 export class ElementBase extends UgoNode {
     constructor(type:TypeElement){
