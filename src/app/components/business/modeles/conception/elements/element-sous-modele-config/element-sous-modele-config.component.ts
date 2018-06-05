@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementBase } from '../element-base';
-import { ModeleDetail } from '../../modele-detail';
+import { ModeleDetail } from '../../../modele-detail';
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModeleService } from '../../modele.service';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { ModeleService } from '../../../modele.service';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';

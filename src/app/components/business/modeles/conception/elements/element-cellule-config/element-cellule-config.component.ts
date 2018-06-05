@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementBase } from '../element-base';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import { NgForm } from '@angular/forms';
-import { PointDetail } from '../../../points/point-detail';
+import { PointDetail } from '../../../../points/point-detail';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 import { ElementService } from '../element.service';

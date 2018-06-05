@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { TypeElement } from '../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../enums/type-element.enum';
 import { ElementBase } from './element-base';
 import * as _ from 'lodash';
-import { PointService } from '../../points/point.service';
+import { PointService } from '../../../points/point.service';
 import { map, merge } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { ModeleService } from '../modele.service';
+import { ModeleService } from '../../modele.service';
 import { zip } from 'rxjs/observable/zip';
-import { CacheGetter } from '../../../../services/cache-getter';
-import { PointDetail } from '../../points/point-detail';
+import { CacheGetter } from '../../../../../services/cache-getter';
+import { PointDetail } from '../../../points/point-detail';
 
 @Injectable()
 export class ElementService {

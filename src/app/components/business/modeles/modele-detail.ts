@@ -1,6 +1,6 @@
 import { ReferentielData } from "../../tools/referentiel-utils/referentiel-data";
 import { UniteTravail } from "../unite-travail/unite-travail";
-import { ElementBase } from "./elements/element-base";
+import { ElementBase } from "./conception/elements/element-base";
 
 export class ModeleDetail implements ReferentielData {
     constructor(Id=undefined, Code='',Libelle=''){

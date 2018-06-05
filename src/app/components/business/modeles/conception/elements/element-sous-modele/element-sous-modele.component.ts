@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import { ElementService } from '../element.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { ElementSousModeleConfigComponent } from '../element-sous-modele-config/element-sous-modele-config.component';
-import { ModeleDetail } from '../../modele-detail';
+import { ModeleDetail } from '../../../modele-detail';
 
 @Component({
   selector: 'app-element-sous-modele',

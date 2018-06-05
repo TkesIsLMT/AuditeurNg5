@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
 import { NgForm } from '@angular/forms';
 

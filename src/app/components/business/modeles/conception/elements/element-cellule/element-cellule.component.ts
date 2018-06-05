@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElementCelluleConfigComponent } from '../element-cellule-config/element-cellule-config.component';
 import * as _ from 'lodash';
 import { ElementService } from '../element.service';
-import { PointDetail } from '../../../points/point-detail';
+import { PointDetail } from '../../../../points/point-detail';
 
 @Component({
   selector: 'app-element-cellule',

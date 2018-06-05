@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
 import { ElementService } from '../element.service';
 

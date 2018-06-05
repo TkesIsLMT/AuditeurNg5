@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
-import { ModeleDetail } from '../../modele-detail';
-import { PointDetail } from '../../../points/point-detail';
+import { ModeleDetail } from '../../../modele-detail';
+import { PointDetail } from '../../../../points/point-detail';
 
 @Component({
   selector: 'app-element-base',
