@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AngularMaterialModule } from './vendors/angular-material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularSplitModule } from 'angular-split';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -103,6 +104,7 @@ import { ElementSousModeleConfigComponent } from './components/business/modeles/
     }),
     AngularMaterialModule,
     FontAwesomeModule,
+    AngularSplitModule,
     ],
   providers: [
     {

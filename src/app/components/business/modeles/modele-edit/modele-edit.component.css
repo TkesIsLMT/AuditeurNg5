@@ -9,3 +9,12 @@
 .app-toolbar > :not(:first-child) {
     margin-left:5px;
 }
+.split-container{
+    height: 70vh;
+}
+.split-container split-area:not(:last-of-type){
+    padding-right:10px;
+}
+.split-container split-area:not(:first-of-type){
+    padding-left:10px;
+}

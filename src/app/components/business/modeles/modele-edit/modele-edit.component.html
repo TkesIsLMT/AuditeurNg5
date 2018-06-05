@@ -29,10 +29,22 @@
       </div>
   </div>
 
-  <div class="">
-  <p class="h4">Conception <small>(Ajoutez des éléments dans l'arbre pour concevoir votre modèle)</small></p>
-  <app-element-base *ngFor="let ele of racine.childs" [element]="ele" [sousModele]="sousModeleDispo"></app-element-base>
-  <app-element-add class="d-block mt-2" (add)="onAddElement($event)"></app-element-add>
+  <div class="split-container">
+  <split direction="horizontal">
+    <split-area [size]="50">
+      <div class="">
+        <p class="h4">Conception <small>(Ajoutez des éléments dans l'arbre pour concevoir votre modèle)</small></p>
+        <app-element-base *ngFor="let ele of racine.childs" [element]="ele" [sousModele]="sousModeleDispo"></app-element-base>
+        <app-element-add class="d-block mt-2" (add)="onAddElement($event)"></app-element-add>
+      </div>
+    </split-area>
+    <split-area [size]="50">
+      <div class="">
+        <p class="h4">Aperçu <small>(Concevez votre modèle et admirez !)</small></p>
+        <app-element-base *ngFor="let ele of racine.childs" [element]="ele" [sousModele]="sousModeleDispo"></app-element-base>
+      </div>
+    </split-area>
+  </split>
 </div>
 <div class="app-toolbar">
   <app-modal-tool-button [buttons]="additionnalTools" (buttonClick)="onAdditionnalToolsClick($event)"></app-modal-tool-button>
