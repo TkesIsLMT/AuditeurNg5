@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../../enums/type-element.enum';
+import { ElementBase } from '../../element-base';
+import { TypeElement } from '../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
-import { ElementService } from '../element.service';
+import { ElementService } from '../../element.service';
 
 @Component({
   selector: 'app-element-add',
@@ -14,7 +14,7 @@ export class ElementAddComponent implements OnInit {
   @Input() captionVisible:boolean = true;
   @Output() add:EventEmitter<ElementBase> = new EventEmitter<ElementBase>()
   caption:string;
-  types:TypeElement[];
+  types:TypeElement[]=[];
   private currentType:TypeElement;
 
   constructor(private eleSrv:ElementService) { }
@@ -25,7 +25,11 @@ export class ElementAddComponent implements OnInit {
 
   ngOnInit() {
     this.currentType = this.element ? this.element.TypeElement : TypeElement.Modele;
-    this.types = this.initTypes();
+    this.eleSrv.hasSousModele$.subscribe(res=>{
+      this.types = this.initTypes();
+      if (!res)
+        this.types = _.difference(this.types,[TypeElement.Modele]);
+    })
     this.caption = `Ajouter dans '${this.typeElementToString(this.currentType)}'`;
   }
 

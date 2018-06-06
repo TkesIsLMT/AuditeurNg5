@@ -8,7 +8,7 @@
           <div class="col-sm-8">
               <select id="fldModele" class="form-control" name="Modele" #modele="ngModel" [(ngModel)]="selectedModele" [compareWith]="compareModele" required  [ngClass]="{'color-placeholder': notModele() }">
                   <option *ngIf="notModele()" disabled [ngValue]="undefined">Sélectionnez un modèle</option>
-                  <option *ngFor="let mod of sousModeleDispo" [ngValue]="mod">{{ mod.Code + ' - ' + mod.Libelle}}</option>
+                  <option *ngFor="let mod of modeles$ | async" [ngValue]="mod">{{ mod.Code + ' - ' + mod.Libelle}}</option>
               </select>
               <app-show-errors [control]="modele"></app-show-errors>
           </div>

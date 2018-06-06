@@ -1,35 +1,47 @@
 import { Injectable } from '@angular/core';
-import { TypeElement } from '../../../../../enums/type-element.enum';
+import { TypeElement } from '../../../enums/type-element.enum';
 import { ElementBase } from './element-base';
 import * as _ from 'lodash';
-import { PointService } from '../../../points/point.service';
-import { map, merge } from 'rxjs/operators';
+import { PointService } from '../points/point.service';
+import { map, merge, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { ModeleService } from '../../modele.service';
 import { zip } from 'rxjs/observable/zip';
-import { CacheGetter } from '../../../../../services/cache-getter';
-import { PointDetail } from '../../../points/point-detail';
+import { CacheGetter } from '../../../services/cache-getter';
+import { PointDetail } from '../points/point-detail';
+import { ModeleService } from './modele.service';
+import { ModeleDetail } from './modele-detail';
 
 @Injectable()
 export class ElementService {
+  private currentModele:number = 0;
   private currentUT:number = 0;
-  pointsDisponible:CacheGetter<PointDetail[]>
-
+  hasSousModele$: Observable<boolean>;
+  pointsDisponible:CacheGetter<PointDetail[]>;
+  modelesDisponible:CacheGetter<ModeleDetail[]>;
 
   constructor(private pointSrv:PointService, private modeleSrv: ModeleService) {
     this.pointsDisponible = new CacheGetter<PointDetail[]>(()=>pointSrv.pointInCache.data.pipe(map(res=>_.filter(res, function(o){
       return _.indexOf(o.ListeUnite, this.currentUT)>=0
     }.bind(this)))));
+    this.modelesDisponible = new CacheGetter<ModeleDetail[]>(()=>modeleSrv.modeleInCache.data.pipe(map(res=>_.filter(res, function(o){
+      return o.UniteTravailId === this.currentUT && o.Id !== this.currentModele
+    }.bind(this)))));
+    this.hasSousModele$ = this.modelesDisponible.data.pipe(map(res => res.length>0));
   }
 
-  setCurrentUniteTravail(idUt: number){
-    this.currentUT = idUt;
+  setCurrentData(idMod:number, idUt: number){
+    if (_.isNaN(idMod) || _.isNil(idMod)){
+      this.currentModele = 0;
+    } else {
+      this.currentModele = idMod;  
+    }
     if (_.isNaN(idUt) || _.isNil(idUt)){
       this.currentUT = 0;
     } else {
       this.currentUT = idUt;  
     }
     this.pointsDisponible.forceReload();
+    this.modelesDisponible.forceReload();
   }
 
   sousTypeAutorise(type:TypeElement) {

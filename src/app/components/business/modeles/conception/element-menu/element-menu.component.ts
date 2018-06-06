@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../../enums/type-element.enum';
-import { ElementService } from '../element.service';
+import { ElementBase } from '../../element-base';
+import { TypeElement } from '../../../../../enums/type-element.enum';
+import { ElementService } from '../../element.service';
 
 @Component({
   selector: 'app-element-menu',

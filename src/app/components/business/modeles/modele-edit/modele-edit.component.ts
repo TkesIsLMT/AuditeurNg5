@@ -4,7 +4,7 @@ import { ModeleService } from '../modele.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { CacheGetter } from '../../../../services/cache-getter';
-import { ElementBase } from '../conception/element-base';
+import { ElementBase } from '../element-base';
 import { CheckFieldDTI } from '../../../../models/check-field-dti';
 import { WindowService } from '../../../../services/window.service';
 import { UgoNode } from '../../../../utils/ugo-node';
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 import { TypeElement } from '../../../../enums/type-element.enum';
 import { PointDetail } from '../../points/point-detail';
 import { PointService } from '../../points/point.service';
-import { ElementService } from '../conception/element.service';
+import { ElementService } from '../element.service';
 
 @Component({
   selector: 'app-modele-edit',
@@ -25,7 +25,6 @@ export class ModeleEditComponent implements OnInit {
   modele:ModeleDetail = new ModeleDetail(0);
   unites:number[];
   racine:ElementBase = new ElementBase(TypeElement.Modele);
-  sousModeleDispo:ModeleDetail[]=[];
 
   constructor(private modSrv:ModeleService, private pointSrv:PointService, private eleSrv: ElementService, private route:ActivatedRoute, private router: Router, private window:WindowService) { }
 
@@ -44,14 +43,7 @@ export class ModeleEditComponent implements OnInit {
         return d;
       }));
       _.each(ele, e => this.racine.addChildElement(e));
-      this.initSousModeleDispo();
     });
-  }
-
-  initSousModeleDispo(){
-    this.modSrv.modeleInCache.data.subscribe(res=>{
-      this.sousModeleDispo = _.difference(res, _.filter(res,['UniteTravailId', this.modele.UniteTravailId]));
-    })
   }
 
   genererArbre(eles:ElementBase[]):ElementBase[]{
@@ -75,7 +67,7 @@ export class ModeleEditComponent implements OnInit {
   }
 
   private initElementService() {
-    this.eleSrv.setCurrentUniteTravail(this.modele.UniteTravailId);
+    this.eleSrv.setCurrentData(this.modele.Id, this.modele.UniteTravailId);
   }
 
   onAddElement(value:ElementBase){

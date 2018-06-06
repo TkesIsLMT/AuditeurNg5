@@ -1,7 +1,7 @@
 <div class="d-flex border-top border-left rounded pl-2 pt-2 mt-2 w-100">
     <ugo-check class="mr-2" [(isSelected)]="isExpanded" checkedClass="fas fa-chevron-up" uncheckedClass="fas fa-chevron-down"><span *ngIf="!isExpanded">{{ titreElement() }}</span></ugo-check>
     <div class="col pr-0 mr-0" *ngIf="isExpanded" [ngSwitch]="element.TypeElement">
-        <app-element-sous-modele *ngSwitchCase="10" [element]="element" [sousModele]="sousModele"></app-element-sous-modele>
+        <app-element-sous-modele *ngSwitchCase="10" [element]="element"></app-element-sous-modele>
         <app-element-menu *ngSwitchCase="20" [element]="element"></app-element-menu>
         <app-element-menu-item *ngSwitchCase="21" [element]="element"></app-element-menu-item>
         <app-element-tableau *ngSwitchCase="30" [element]="element"></app-element-tableau>

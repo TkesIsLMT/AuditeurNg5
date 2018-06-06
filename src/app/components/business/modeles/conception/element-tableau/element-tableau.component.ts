@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ElementBase } from '../element-base';
-import { TypeElement } from '../../../../../../enums/type-element.enum';
-import { ElementService } from '../element.service';
+import { TypeElement } from '../../../../../enums/type-element.enum';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElementTableauConfigComponent } from '../element-tableau-config/element-tableau-config.component';
 import * as _ from 'lodash';
+import { ElementBase } from '../../element-base';
+import { ElementService } from '../../element.service';
 
 @Component({
   selector: 'app-element-tableau',

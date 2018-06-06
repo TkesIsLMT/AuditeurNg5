@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ElementBase } from '../element-base';
-import { ModeleDetail } from '../../../modele-detail';
+import { ElementBase } from '../../element-base';
+import { ModeleDetail } from '../../modele-detail';
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModeleService } from '../../../modele.service';
-import { TypeElement } from '../../../../../../enums/type-element.enum';
+import { ModeleService } from '../../modele.service';
+import { TypeElement } from '../../../../../enums/type-element.enum';
 import * as _ from 'lodash';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { ElementService } from '../../element.service';
 @Component({
   selector: 'app-element-sous-modele-config',
   templateUrl: './element-sous-modele-config.component.html',
@@ -16,7 +17,9 @@ import { map } from 'rxjs/operators';
 export class ElementSousModeleConfigComponent implements OnInit {
   element:ElementBase;
   selectedModele:ModeleDetail;
-  sousModeleDispo:ModeleDetail[];
+  modeles$:Observable<ModeleDetail[]>;
+  private eleSrv:ElementService;
+  
   constructor(private modalActive: NgbActiveModal, private modeleSrv:ModeleService) { 
     this.setElement(new ElementBase(TypeElement.Modele)); 
   }
@@ -32,18 +35,18 @@ export class ElementSousModeleConfigComponent implements OnInit {
     return _.isUndefined(this.selectedModele);
   }
 
-  setContext(ctx:{element:ElementBase, sousModele:ModeleDetail[]}){
-    this.setElement(ctx.element);
-    this.setListe(ctx.sousModele);
+  setContext(ctx:{ele:ElementBase,srv:ElementService}){
+    this.setElement(ctx.ele);
+    this.setElementService(ctx.srv);
+  }
+
+  private setElementService(srv:ElementService): void {
+    this.eleSrv = srv;
+    this.modeles$ = this.eleSrv.modelesDisponible.data.pipe(tap(o=>this.selectedModele = _.find(o,['Id',this.element.ModeleLieId])));
   }
 
   private setElement(e:ElementBase): void {
     this.element = e;
-  }
-  private setListe(lst:ModeleDetail[]){
-    this.sousModeleDispo = lst;
-    if (this.element)
-      this.selectedModele = _.find(this.sousModeleDispo, ['Id', this.element.ModeleLieId])
   }
 
   submit(form:NgForm){

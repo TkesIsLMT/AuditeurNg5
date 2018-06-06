@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ElementBase } from '../element-base';
-import { ElementService } from '../element.service';
+import { ElementBase } from '../../element-base';
+import { ElementService } from '../../element.service';
 
 @Component({
   selector: 'app-element-standard-action',

@@ -62,6 +62,11 @@ import { ElementCelluleConfigComponent } from './components/business/modeles/con
 import { ElementStandardActionComponent } from './components/business/modeles/conception/element-standard-action/element-standard-action.component';
 import { ElementSousModeleComponent } from './components/business/modeles/conception/element-sous-modele/element-sous-modele.component';
 import { ElementSousModeleConfigComponent } from './components/business/modeles/conception/element-sous-modele-config/element-sous-modele-config.component';
+import { ExploiElementBaseComponent } from './components/business/modeles/exploitation/exploi-element-base/exploi-element-base.component';
+import { ExploiMenuComponent } from './components/business/modeles/exploitation/exploi-menu/exploi-menu.component';
+import { ExploiCelluleComponent } from './components/business/modeles/exploitation/exploi-cellule/exploi-cellule.component';
+import { ExploiTableauComponent } from './components/business/modeles/exploitation/exploi-tableau/exploi-tableau.component';
+import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
 
 @NgModule({
   declarations: [
@@ -75,7 +80,10 @@ import { ElementSousModeleConfigComponent } from './components/business/modeles/
     UgoCheckComponent, UgoCheckTreeComponent, 
     CategorieTreeSelectComponent, UniteTravailTreeSelectComponent, PiTreeSelectComponent, 
     ModalToolButtonComponent, 
-    EnumToKeysPipe, LodashFilterPipe, ModeleListComponent, ModeleEditComponent, ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
+    EnumToKeysPipe, LodashFilterPipe, 
+    ModeleListComponent, ModeleEditComponent, 
+    ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
+    ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent, StringAsArrayPipe,
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
