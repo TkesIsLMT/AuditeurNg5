@@ -18,3 +18,7 @@
 .split-container split-area:not(:first-of-type){
     padding-left:10px;
 }
+
+.split-area-container {
+    min-width:30vw; 
+}

@@ -35,7 +35,7 @@ export class ElementAddComponent implements OnInit {
 
   initTypes(){
     if (_.isUndefined(this.element)){
-      return [TypeElement.Modele, TypeElement.Menu, TypeElement.Tableau, TypeElement.Schema];
+      return [TypeElement.Modele, TypeElement.Menu, TypeElement.Tableau, TypeElement.Schema, TypeElement.Cellule];
     } else {
       return this.eleSrv.sousTypeAutorise(this.element.TypeElement);
     }

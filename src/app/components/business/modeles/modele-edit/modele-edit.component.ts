@@ -21,6 +21,8 @@ import { ElementService } from '../element.service';
   providers:[ElementService]
 })
 export class ModeleEditComponent implements OnInit {
+  private isConceptionVisible:boolean = true;
+  private isApercuVisible:boolean = false;
   pending:boolean = false;
   modele:ModeleDetail = new ModeleDetail(0);
   unites:number[];
