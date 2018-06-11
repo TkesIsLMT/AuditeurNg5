@@ -1742,7 +1742,7 @@ const keyboardLayouts: IKeyboardLayouts = {
     'lang': ['fo']
   },
   'Numeric':{
-    'name':'Numeric',
+    'name':'Numerique',
     'keys': [
       [
         ['7'],
@@ -1767,7 +1767,7 @@ const keyboardLayouts: IKeyboardLayouts = {
     ],
     'lang':['fr']
   },
-  'Fran\u00e7ais': {
+  'Francais': {
     'name': 'French',
     'keys': [
       [
@@ -1830,11 +1830,10 @@ const keyboardLayouts: IKeyboardLayouts = {
         [';', '.'],
         [':', '/'],
         ['!', '\u00a7'],
-        [KeyboardClassKey.Shift, KeyboardClassKey.Shift, KeyboardClassKey.Shift, KeyboardClassKey.Shift]
+        [KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr]
       ],
       [
-        [KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space],
-        [KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr]
+        [KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space]
       ]
     ],
     'lang': ['fr']

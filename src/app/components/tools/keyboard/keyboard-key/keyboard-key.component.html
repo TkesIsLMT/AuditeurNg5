@@ -6,6 +6,7 @@
         [ngClass]="cssClass"
         (click)="onClick($event)"
 >
-  <mat-icon *ngIf="hasIcon">{{ icon }}</mat-icon>
+  <i *ngIf="hasIcon" [ngClass]="icon" [attr.data-fa-transform]="faTransform"></i>
+  <!-- <mat-icon *ngIf="hasIcon">{{ icon }}</mat-icon> -->
   <ng-container *ngIf="!hasIcon">{{ key }}</ng-container>
 </button>

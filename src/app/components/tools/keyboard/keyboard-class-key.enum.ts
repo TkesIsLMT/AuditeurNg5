@@ -3,7 +3,7 @@
 // [rollup](https://github.com/angular/angular/issues/17516) support it
 export enum KeyboardClassKey {
   Alt = 'Alt',
-  AltGr = 'AltGraph',
+  AltGr = 'AltGr',
   AltLk = 'AltLk',
   Bksp = 'Backspace',
   Caps = 'CapsLock',

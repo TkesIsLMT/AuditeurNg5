@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { KEYBOARD_DEADKEYS } from '../keyboard-deadkey.config';
-import { KEYBOARD_ICONS } from '../keyboard-icons.config';
+import { KEYBOARD_DEADKEYS, keyboardDeadkeys } from '../keyboard-deadkey.config';
+import { KEYBOARD_ICONS, KEYBOARD_ICONS_TRANSFORM } from '../keyboard-icons.config';
 import { KeyboardClassKey } from '../keyboard-class-key.enum';
 import { IKeyboardDeadkeys } from '../keyboard-deadkeys.interface';
 import { IKeyboardIcons } from '../keyboard-icons.interface';
@@ -108,6 +108,14 @@ export class KeyboardKeyComponent implements OnInit {
     return this._icons[this.key];
   }
 
+  get faTransform():string{
+    return this._iconsTransform[this.key];
+    // //console.log(this.key);
+    // if (this.hasIcon && this.key === 'Enter')
+    //   return 'rotate--90';
+    // return 'rotate-30';
+  }
+
   get cssClass(): string {
     const classes = [];
 
@@ -143,7 +151,9 @@ export class KeyboardKeyComponent implements OnInit {
 
   // Inject dependencies
   constructor(@Inject(KEYBOARD_DEADKEYS) private _deadkeys: IKeyboardDeadkeys,
-              @Inject(KEYBOARD_ICONS) private _icons: IKeyboardIcons) {}
+              @Inject(KEYBOARD_ICONS) private _icons: IKeyboardIcons,
+              @Inject(KEYBOARD_ICONS_TRANSFORM) private _iconsTransform: IKeyboardIcons
+            ) {}
 
   ngOnInit() {
     // read the deadkeys

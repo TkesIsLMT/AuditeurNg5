@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 // Configs
 import { keyboardDeadkeys, KEYBOARD_DEADKEYS } from './keyboard-deadkey.config';
-import { keyboardIcons, KEYBOARD_ICONS } from './keyboard-icons.config';
+import { keyboardIcons, KEYBOARD_ICONS, KEYBOARD_ICONS_TRANSFORM, keyboardIconsTransform } from './keyboard-icons.config';
 import { keyboardLayouts, KEYBOARD_LAYOUTS } from './keyboard-layouts.config';
 // Components and directives
 import { KeyboardContainerComponent } from './keyboard-container/keyboard-container.component';
@@ -61,6 +61,7 @@ import { KeyboardService } from './keyboard.service';
     LIVE_ANNOUNCER_PROVIDER,
     { provide: KEYBOARD_DEADKEYS, useValue: keyboardDeadkeys },
     { provide: KEYBOARD_ICONS, useValue: keyboardIcons },
+    { provide: KEYBOARD_ICONS_TRANSFORM, useValue: keyboardIconsTransform },
     { provide: KEYBOARD_LAYOUTS, useValue: keyboardLayouts }
   ]
 })
