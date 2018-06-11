@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AngularMaterialModule } from './vendors/angular-material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularSplitModule } from 'angular-split';
+import { KeyboardModule } from './components/tools/keyboard/keyboard.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -67,6 +68,7 @@ import { ExploiMenuComponent } from './components/business/modeles/exploitation/
 import { ExploiCelluleComponent } from './components/business/modeles/exploitation/exploi-cellule/exploi-cellule.component';
 import { ExploiTableauComponent } from './components/business/modeles/exploitation/exploi-tableau/exploi-tableau.component';
 import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
+import { ExploiCelluleCommentaireComponent } from './components/business/modeles/exploitation/exploi-cellule-commentaire/exploi-cellule-commentaire.component';
 
 @NgModule({
   declarations: [
@@ -83,13 +85,15 @@ import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
     EnumToKeysPipe, LodashFilterPipe, 
     ModeleListComponent, ModeleEditComponent, 
     ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
-    ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent, StringAsArrayPipe,
+    ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent,ExploiCelluleCommentaireComponent,
+     StringAsArrayPipe, 
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
     DesactivateConfirmationDialogComponent,
     CategorieEditComponent, PointEditComponent,
     ElementTableauConfigComponent,ElementCelluleConfigComponent,ElementSousModeleConfigComponent,
+    ExploiCelluleCommentaireComponent,
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
@@ -113,6 +117,7 @@ import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
     AngularMaterialModule,
     FontAwesomeModule,
     AngularSplitModule,
+    KeyboardModule,
     ],
   providers: [
     {
@@ -123,6 +128,7 @@ import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
     WindowService,
     GlobalInfo, MessageService,
     CategorieService, PointService, ModeleService, UniteTravailService, PiService],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }
