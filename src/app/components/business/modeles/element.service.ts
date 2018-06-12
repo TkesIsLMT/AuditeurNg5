@@ -127,4 +127,15 @@ export class ElementService {
     }
   }
   
+  getIntituleElement(ele:ElementBase) {
+    let s:string = '';
+    if (ele.Libelle){
+      s = ele.Libelle;
+    } else if (ele.PointControle){
+      s = ele.PointControle.Libelle;
+    } else {
+      s = "";
+    }
+    return s;
+  }
 }

@@ -1836,7 +1836,7 @@ const keyboardLayouts: IKeyboardLayouts = {
         [KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space]
       ]
     ],
-    'lang': ['fr']
+    'lang': ['fr-FR']
   },
   'Gaeilge': {
     'name': 'Irish / Gaelic',

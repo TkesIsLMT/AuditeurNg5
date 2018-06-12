@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -69,6 +69,7 @@ import { ExploiCelluleComponent } from './components/business/modeles/exploitati
 import { ExploiTableauComponent } from './components/business/modeles/exploitation/exploi-tableau/exploi-tableau.component';
 import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
 import { ExploiCelluleCommentaireComponent } from './components/business/modeles/exploitation/exploi-cellule-commentaire/exploi-cellule-commentaire.component';
+import { ExploiCelluleActionComponent } from './components/business/modeles/exploitation/exploi-cellule-action/exploi-cellule-action.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { ExploiCelluleCommentaireComponent } from './components/business/modeles
     ModeleListComponent, ModeleEditComponent, 
     ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
     ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent,ExploiCelluleCommentaireComponent,
-     StringAsArrayPipe, 
+     StringAsArrayPipe,
+     ExploiCelluleActionComponent, 
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
@@ -120,6 +122,7 @@ import { ExploiCelluleCommentaireComponent } from './components/business/modeles
     KeyboardModule,
     ],
   providers: [
+    {provide: LOCALE_ID, useValue: 'fr-FR' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WinAuthInterceptor,

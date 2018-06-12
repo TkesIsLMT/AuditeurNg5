@@ -39,7 +39,6 @@ export class CategorieEditComponent implements OnInit {
     this.catSrv.changeCategorieState(this.categorie,state).subscribe(
       ()=> {
         this.categorie.IsEnable = state;
-        //this.msg.info(MessageStandard.upd_ok)
         this.modalActive.close(this.categorie);
       },
       ()=>this.msg.error(MessageStandard.upd_nok));

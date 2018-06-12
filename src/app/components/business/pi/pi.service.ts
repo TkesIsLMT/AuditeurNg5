@@ -31,5 +31,7 @@ export class PiService extends ServiceBase{
   getPiBranche(webid):Observable<PiDetail[]> {
     return this.http.get<PiDetail[]>(this.baseUrl + "/" + webid + "/branche");
   }
-
+  getPiValeur(webid):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${webid}/value`);
+  }
 }
