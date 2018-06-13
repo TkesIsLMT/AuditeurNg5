@@ -105,22 +105,6 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
         this.startingRoot = _.find(lstNodes, n => n.parent === undefined );
         this.startingNode = _.find(lstNodes, ['id', this.piwebid]);
 
-        // if (this.startingNode){
-        //     let lstIdNode:string[] = _.map(lstNodes, n=>n.id);
-        //     let lstFindNode = new Array<UgoTreeNode>();
-        //     UgoTreeNode.foreachTreeNodeAction(this.racine.childs, item => { if (_.indexOf(lstIdNode,item.id)>=0) lstFindNode.push(item)});
-        //     if (lstFindNode.length > 0){
-        //         let lastNode = lstFindNode[lstFindNode.length-1];
-        //         let node = _.find(lstNodes, ['id', lastNode.id]);
-        //         if (node){
-        //             lastNode.childs = node.childs;
-        //             lastNode.additionalProperty.partialLoad = true;
-        //             UgoTreeNode.foreachTreeNodeAction(lastNode, n=>n.expanded = true,true);
-        //         }
-        //     }
-        //     this.changeCurrentElement(this.startingNode.value,false);
-        // }
-
         if (this.startingRoot) {
             var index = -1;
             for (var i = 0; i < this.racine.childs.length; i++) {
@@ -175,11 +159,6 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
     return node;
   }
 
-
-
-
-
-
   beforeExpandAction = function (node:UgoTreeNode) {
     if (node.expanded && !node.additionalProperty.partialLoad)
         return;
@@ -194,25 +173,13 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
     if (node.checked || !node.checkable)
         return;
     UgoTreeNode.foreachTreeNodeAction(this.treeConfig.tree, n=>n.checked = false);
-    // _.each(ctrl.treeConfig.tree, function (el) {
-    //     utilsFact.foreachTreeNodeAction(el, function (n) { n.checked = false; })
-    // });
-
-
-    // if (node.checked)
-      //     return;
-      // _.each(this.treeConfig.tree, (el) => UgoTreeNode.foreachTreeNodeAction(el, (n) => n.checked = false));
   }
 
   afterCheckAction = function (node:UgoTreeNode) {
     this.isUserCheckAction = true;
     this.changeCurrentElement((node.checkable && node.checked) ? node.value : null, true);
-
-
-      // this.categorie = node.checked ? node.value : null;
-      // this.treeConfig.editValue = this.categorie ? this.categorie.Code : undefined;
-      // this.onPiChange();
   }
+
   changeCurrentElement(newValue:PiDetail, launch:boolean) {
     this.selectedElement = newValue;
     if (this.selectedElement)
@@ -226,9 +193,6 @@ export class PiTreeSelectComponent implements  OnInit,OnChanges {
   onPiChange() {
     this.piwebidChange.emit(this.selectedElement ? this.selectedElement.WebId : undefined);
   }
-
-
-
 }
 
 
