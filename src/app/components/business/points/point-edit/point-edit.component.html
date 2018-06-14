@@ -23,14 +23,14 @@
       </div>
       <div class="form-group row">
         <label for="fldTypePoint" class="col-sm-2 col-form-label">Type</label>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <select id="fldTypePoint" class="form-control" name="TypePoint" #typePoint="ngModel" [(ngModel)]="point.TypePoint" required  [ngClass]="{'color-placeholder': notTypePoint() }">
               <option *ngIf="notTypePoint()" disabled [ngValue]="undefined">Sélectionnez un type</option>
               <option *ngFor="let tp of enumTypePoint | enumToKeys" [ngValue]="enumTypePoint[tp]">{{tp}}</option>
           </select>
           <app-show-errors [control]="typePoint"></app-show-errors>
         </div>
-        <label for="fldUniteMesure" class="col-sm-1 col-form-label">Unité</label>
+        <label for="fldUniteMesure" class="col-sm-2 col-form-label">Unité de mesure</label>
         <div class="col-sm-4">
           <input type="text" id="fldUniteMesure" name="UniteMesure" list="lstUniteMesure" #uniteMesure="ngModel" [(ngModel)]="point.UniteMesure" 
           class="form-control has-feedback" placeholder="Sélectionnez / ajoutez une unité" ng-maxlength="255" />
@@ -43,16 +43,25 @@
 
       <div class="form-group row">
           <label for="fldCategorie" class="col-md-2 col-form-label">Catégorie</label>
-          <app-categorie-tree-select class="col-lg-4" id="fldCategorie" name="Categorie" [(categorie)]="point.Categorie">
-          </app-categorie-tree-select>
-          <label for="fldUniteTravail" class="col-md-2 col-form-label">Unité travail</label>
-          <app-unite-travail-tree-select class="col-lg-4" id="fldUniteTravail" name="UniteTravail" [(unites)]="point.ListeUnite">
-          </app-unite-travail-tree-select>
+          <div class="col-lg-4">
+              <app-categorie-tree-select id="fldCategorie" name="Categorie" #categorie="ngModel" [(ngModel)]="point.Categorie" required>
+              </app-categorie-tree-select>
+              <app-show-errors [control]="categorie"></app-show-errors>
+          </div>
+          <label for="fldUniteTravail" class="col-md-2 col-form-label">Unité de travail</label>
+          <div class="col-lg-4">
+            <app-unite-travail-tree-select id="fldUniteTravail" name="UniteTravail" #uniteTravail="ngModel" [(ngModel)]="point.ListeUnite" required>
+            </app-unite-travail-tree-select>
+            <app-show-errors [control]="uniteTravail"></app-show-errors>
+        </div>
       </div>
       <div class="form-group row">
           <label for="fldPointPI" class="col-md-2 col-form-label">Point PI</label>
-          <app-pi-tree-select class="col-lg-10" id="fldPointPI" name="PointPI" [(piwebid)]="point.IdPI">
-          </app-pi-tree-select>
+          <div class="col-lg-10">
+              <app-pi-tree-select  id="fldPointPI" name="PointPI" #pointPI="ngModel" [(ngModel)]="point.IdPI" [required]="isPointPIRequired()">
+              </app-pi-tree-select>
+              <app-show-errors [control]="pointPI"></app-show-errors>
+          </div>
       </div>
 
       <div>

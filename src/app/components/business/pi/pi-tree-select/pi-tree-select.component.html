@@ -1,5 +1,5 @@
-<div class="input-group">
-  <div class="form-control scroll-vertical" [ngClass]="{'check-list check-list-200':treeConfig.isEdit}" tabindex="0">
+<div class="input-group" #mycontrol [appTreeRequired]="treeConfig" (mouseleave)="leaveControl()">
+  <div class="form-control scroll-vertical" [ngClass]="{'check-list check-list-200':treeConfig.isEdit}" tabindex="0" (focus)="setFocused()">
       <span *ngIf="treeConfig.canShowWaitingFn()" class="loading-info">Connexion au serveur...</span>
       <span *ngIf="treeConfig.canShowSelectionFn()" class="animate-show">{{treeConfig.editValue}}</span>
       <span *ngIf="treeConfig.canShowPlaceHolderFn()" class="color-placeholder">Sélectionnez un point PI</span>
@@ -8,10 +8,11 @@
       </ugo-check-tree>
   </div>
   <div class="input-group-append">
-    <button *ngIf="!treeConfig.isEdit" [ngClass]="treeConfig.consultBtn.btnClass" type="button" [title]="treeConfig.consultBtn.title" (click)="treeConfig.onSwitchMode()" [disabled]="treeConfig.isBtnDisable()">
+    <button *ngIf="!treeConfig.isEdit" [ngClass]="treeConfig.consultBtn.btnClass" type="button" [title]="treeConfig.consultBtn.title" (click)="toggleClick()"
+      [disabled]="disabled || treeConfig.isBtnDisable()"> 
       <i [ngClass]="treeConfig.consultBtn.faClass"></i>
       {{treeConfig.editBtn.caption}}</button>
-    <button *ngIf="treeConfig.isEdit" [ngClass]="treeConfig.editBtn.btnClass" type="button" [title]="treeConfig.editBtn.title" (click)="treeConfig.onSwitchMode()">
+    <button *ngIf="treeConfig.isEdit" [ngClass]="treeConfig.editBtn.btnClass" type="button" [title]="treeConfig.editBtn.title" (click)="toggleClick()">
       <i [ngClass]="treeConfig.editBtn.faClass"></i>
       {{treeConfig.editBtn.caption}}</button>
   </div>

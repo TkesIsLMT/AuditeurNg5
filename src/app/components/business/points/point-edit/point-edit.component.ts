@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { CheckFieldDTI } from '../../../../models/check-field-dti';
@@ -90,6 +90,10 @@ export class PointEditComponent implements OnInit {
 
   notTypePoint(){
     return _.isNil(this.point.TypePoint);
+  }
+
+  isPointPIRequired(){
+    return this.point.TypePoint === TypePoint.InformationPI;
   }
 
   onCancel(reason:string = ''){

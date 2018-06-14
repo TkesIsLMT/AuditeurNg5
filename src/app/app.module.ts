@@ -70,6 +70,7 @@ import { ExploiTableauComponent } from './components/business/modeles/exploitati
 import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
 import { ExploiCelluleCommentaireComponent } from './components/business/modeles/exploitation/exploi-cellule-commentaire/exploi-cellule-commentaire.component';
 import { ExploiCelluleActionComponent } from './components/business/modeles/exploitation/exploi-cellule-action/exploi-cellule-action.component';
+import { TreeRequiredValidatorDirective } from './directives/tree-required-validator.directive';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { ExploiCelluleActionComponent } from './components/business/modeles/expl
     ElementBaseComponent, ElementMenuComponent, ElementAddComponent, ElementMenuItemComponent, ElementTableauComponent, ElementLigneComponent, ElementCelluleComponent, ElementTableauConfigComponent, ElementCelluleConfigComponent, ElementStandardActionComponent, ElementSousModeleComponent, ElementSousModeleConfigComponent,
     ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent,ExploiCelluleCommentaireComponent,
      StringAsArrayPipe,
-     ExploiCelluleActionComponent, 
+     ExploiCelluleActionComponent,
+     TreeRequiredValidatorDirective, 
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,

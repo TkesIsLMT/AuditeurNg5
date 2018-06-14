@@ -20,6 +20,7 @@ export class ShowErrorsComponent {
     'maxlength': (params) => 'La longueur maximale est de ' + params.requiredLength,
     'pattern': (params) => 'Le format requis est : ' + params.requiredPattern,
     'uniqueValue': (params) => params.message,
+    'appTreeSelectRequired': (params) => params.message,
   };
  
   @Input()

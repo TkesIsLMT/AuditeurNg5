@@ -22,7 +22,8 @@
       <div class="form-group col-sm-4">
           <label for="fldUniteTravail">Unité travail</label>
           <div class="">
-            <app-unite-travail-tree-select id="fldUniteTravail" name="UniteTravail" #uniteTravail [unites]="unites" (unitesChange)="onUnitesChange($event)" [multiSelect]="false">
+            <app-unite-travail-tree-select id="fldUniteTravail" name="UniteTravail" #uniteTravail="ngModel" [(ngModel)]="unites" (ngModelChange)="onUnitesChange($event)"
+              [multiSelect]="false" required>
             </app-unite-travail-tree-select>
             <app-show-errors [control]="uniteTravail"></app-show-errors>
           </div>

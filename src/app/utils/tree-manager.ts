@@ -2,7 +2,12 @@ import { DynamicButton } from "./dynamic-button";
 import { UgoTreeNode } from "../components/tools/ugo-check-tree/ugo-tree-node";
 import * as _ from "lodash";
 
+export interface ITreeContainer{
+    treeConfig:TreeManager;
+}
+
 export class TreeManager {
+    isRequired:boolean = false;
     isLoading:boolean = false;
     isEdit:boolean = false;
     tree: UgoTreeNode[];
