@@ -22,3 +22,19 @@
 .split-area-container {
     min-width:30vw; 
 }
+
+::ng-deep app-element-base.active-element > div {
+    border: dashed 3px #ffc107 !important;
+    padding: .5rem;
+}
+::ng-deep app-exploi-cellule .active-element,
+::ng-deep app-exploi-menu .active-element,
+::ng-deep app-exploi-tableau div.active-element {
+    border: dashed 3px #ffc107 !important;
+    padding:.5rem;
+}
+/* dee2e6 */
+::ng-deep app-exploi-tableau tr.active-element {
+    border: dashed 3px #ffc107 !important;
+    padding:.5rem;
+}

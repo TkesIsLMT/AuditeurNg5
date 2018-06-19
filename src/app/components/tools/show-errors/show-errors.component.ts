@@ -21,6 +21,8 @@ export class ShowErrorsComponent {
     'pattern': (params) => 'Le format requis est : ' + params.requiredPattern,
     'uniqueValue': (params) => params.message,
     'appTreeSelectRequired': (params) => params.message,
+    'appMax':(params)=> params.message,
+    'appMin':(params)=> params.message,
   };
  
   @Input()

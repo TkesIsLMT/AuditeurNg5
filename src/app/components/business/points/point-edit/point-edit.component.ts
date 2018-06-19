@@ -95,7 +95,9 @@ export class PointEditComponent implements OnInit {
   isPointPIRequired(){
     return this.point.TypePoint === TypePoint.InformationPI;
   }
-
+  isBorneMinMaxVisible(){
+    return this.point.TypePoint === TypePoint.Numérique;
+  }
   onCancel(reason:string = ''){
     this.modalActive.dismiss(reason);
   }

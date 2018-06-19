@@ -23,10 +23,13 @@ import { ElementService } from '../element.service';
 export class ModeleEditComponent implements OnInit {
   private isConceptionVisible:boolean = true;
   private isApercuVisible:boolean = false;
+  private isLocalisationActive = false;
   pending:boolean = false;
   modele:ModeleDetail = new ModeleDetail(0);
   unites:number[];
   racine:ElementBase = new ElementBase(TypeElement.Modele);
+
+  
 
   constructor(private modSrv:ModeleService, private pointSrv:PointService, private eleSrv: ElementService, private route:ActivatedRoute, private router: Router, private window:WindowService) { }
 
@@ -114,6 +117,30 @@ export class ModeleEditComponent implements OnInit {
       ele.parent = undefined;
     });
     return data;
+  }
+
+  private toggleApercu(){
+    this.isApercuVisible = !this.isApercuVisible;
+    this.isLocalisationActive = this.isLocalisationActive && this.isApercuVisible && this.isConceptionVisible;
+    this.manageLocalisation();
+  }
+  private toggleConception(){
+    this.isConceptionVisible = !this.isConceptionVisible;
+    this.isLocalisationActive = this.isLocalisationActive && this.isApercuVisible && this.isConceptionVisible;
+    this.manageLocalisation();
+  }
+  private toggleLocalisation(){
+    this.isLocalisationActive = !this.isLocalisationActive;
+    this.manageLocalisation();
+  }
+
+  private manageLocalisation() {
+    if (this.isLocalisationActive) {
+      this.eleSrv.startActivation();
+    }
+    else {
+      this.eleSrv.stopActivation();
+    }
   }
 
   onSubmit(myForm){

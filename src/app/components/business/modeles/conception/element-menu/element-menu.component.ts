@@ -10,6 +10,7 @@ import { ElementService } from '../../element.service';
 })
 export class ElementMenuComponent implements OnInit {
   @Input() element:ElementBase;
+
   constructor(private eleSrv:ElementService) { }
 
   ngOnInit() {

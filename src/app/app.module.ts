@@ -71,6 +71,11 @@ import { StringAsArrayPipe } from './pipes/string-as-array.pipe';
 import { ExploiCelluleCommentaireComponent } from './components/business/modeles/exploitation/exploi-cellule-commentaire/exploi-cellule-commentaire.component';
 import { ExploiCelluleActionComponent } from './components/business/modeles/exploitation/exploi-cellule-action/exploi-cellule-action.component';
 import { TreeRequiredValidatorDirective } from './directives/tree-required-validator.directive';
+import { MaxValidatorDirective } from './directives/max-validator.directive';
+import { MinValidatorDirective } from './directives/min-validator.directive';
+import { HorsBorneDirective } from './directives/hors-borne.directive';
+import { ExploiLocalisationComponent } from './components/business/modeles/exploitation/exploi-localisation/exploi-localisation.component';
+import { ElementLocalisableDirective } from './directives/element-localisable.directive';
 
 @NgModule({
   declarations: [
@@ -90,7 +95,12 @@ import { TreeRequiredValidatorDirective } from './directives/tree-required-valid
     ExploiElementBaseComponent, ExploiMenuComponent, ExploiCelluleComponent, ExploiTableauComponent,ExploiCelluleCommentaireComponent,
      StringAsArrayPipe,
      ExploiCelluleActionComponent,
-     TreeRequiredValidatorDirective, 
+     TreeRequiredValidatorDirective,
+     MaxValidatorDirective,
+     MinValidatorDirective,
+     HorsBorneDirective,
+     ExploiLocalisationComponent,
+     ElementLocalisableDirective, 
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,

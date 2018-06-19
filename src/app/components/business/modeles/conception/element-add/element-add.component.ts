@@ -13,6 +13,7 @@ export class ElementAddComponent implements OnInit {
   @Input() element:ElementBase;
   @Input() captionVisible:boolean = true;
   @Output() add:EventEmitter<ElementBase> = new EventEmitter<ElementBase>()
+
   caption:string;
   types:TypeElement[]=[];
   private currentType:TypeElement;
@@ -25,11 +26,13 @@ export class ElementAddComponent implements OnInit {
 
   ngOnInit() {
     this.currentType = this.element ? this.element.TypeElement : TypeElement.Modele;
+    this.types = this.initTypes();
     this.eleSrv.hasSousModele$.subscribe(res=>{
-      this.types = this.initTypes();
-      if (!res)
-        this.types = _.difference(this.types,[TypeElement.Modele]);
-    })
+        if (!res)
+          this.types = _.difference(this.types,[TypeElement.Modele]);
+      },
+        err=>console.log(err)
+      );
     this.caption = `Ajouter dans '${this.typeElementToString(this.currentType)}'`;
   }
 
@@ -43,6 +46,7 @@ export class ElementAddComponent implements OnInit {
 
   selectType(e, type:TypeElement){
     e.preventDefault();
+    e.stopPropagation();
 
     let newEle = this.eleSrv.addNouvelElement(this.element, type, true);
     this.add.emit(newEle);

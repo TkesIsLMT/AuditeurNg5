@@ -14,7 +14,7 @@ import { PointDetail } from '../../../points/point-detail';
 export class ElementCelluleComponent implements OnInit {
   @Input() element:ElementBase;
   @Input() pointsDispo:PointDetail[] = [];
-  
+
   resume:string;
   constructor(private modalService:NgbModal, private eleSrv: ElementService) { }
 

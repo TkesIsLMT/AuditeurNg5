@@ -35,7 +35,7 @@
     <split-area *ngIf="isConceptionVisible" [size]="50" >
       <div class="split-area-container">
         <p class="h4">Conception <small>(Ajoutez des éléments dans l'arbre pour concevoir votre modèle)</small></p>
-        <app-element-base *ngFor="let ele of racine.childs" [element]="ele"></app-element-base>
+        <app-element-base *ngFor="let ele of racine.childs" [element]="ele" (clic)="onClickElement(ele)"></app-element-base>
         <app-element-add class="d-block mt-2" (add)="onAddElement($event)"></app-element-add>
       </div>
     </split-area>
@@ -48,17 +48,22 @@
   </split>
 </div>
 <div class="app-toolbar">
-  <button type="button" class="btn btn-outline-secondary" (click)="isConceptionVisible = !isConceptionVisible"
+  <button type="button" class="btn" [class.btn-outline-secondary]="!isConceptionVisible" [class.btn-secondary]="isConceptionVisible" (click)="toggleConception()"
     title="Cacher / Afficher la partie conception du modèle">
     <span *ngIf="!isConceptionVisible"><i class="fas fa-eye"></i></span>
     <span *ngIf="isConceptionVisible"><i class="fas fa-eye-slash"></i></span> 
     Concepteur
   </button>
-  <button type="button" class="btn btn-outline-secondary" (click)="isApercuVisible = !isApercuVisible"
+  <button type="button" class="btn" [class.btn-outline-secondary]="!isApercuVisible" [class.btn-secondary]="isApercuVisible" (click)="toggleApercu()"
     title="Cacher / Afficher la partie aperçu du modèle">
     <span *ngIf="!isApercuVisible"><i class="fas fa-eye"></i></span>
     <span *ngIf="isApercuVisible"><i class="fas fa-eye-slash"></i></span>
     Aperçu
+  </button>
+  <button *ngIf="isApercuVisible && isConceptionVisible" (click)="toggleLocalisation()"
+    type="button" class="btn" [class.btn-outline-secondary]="!isLocalisationActive" [class.btn-warning]="isLocalisationActive" title="Activer la localisation des éléments">
+    <span><i class="fas fa-location-arrow"></i></span>
+    Localiser
   </button>
   <div class="flex-fake"> </div>
   <button type="button" class="btn btn-secondary" (click)="onBack()"><i class="far fa-arrow-alt-circle-left"></i> Retour</button>

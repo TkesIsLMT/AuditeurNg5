@@ -40,6 +40,20 @@
           <app-show-errors [control]="uniteMesure"></app-show-errors>
         </div>
       </div>
+      <div *ngIf="isBorneMinMaxVisible()" class="form-group row">
+          <label for="txtBorneMini" class="col-md-2 col-form-label">Borne minimale</label>
+          <div class="col-lg-4">
+              <input type="number" id="txtBorneMini" name="BorneMini" #borneMini="ngModel" [(ngModel)]="point.BorneMinimale" 
+              class="form-control has-feedback" placeholder="pas moins que..." [appMax]="point.BorneMaximale" [max]="point.BorneMaximale" />
+              <app-show-errors [control]="borneMini"></app-show-errors>
+          </div>
+          <label for="txtBorneMaxi" class="col-md-2 col-form-label">Borne maximale</label>
+          <div class="col-lg-4">
+              <input type="number" id="txtBorneMaxi" name="BorneMaxi" #borneMaxi="ngModel" [(ngModel)]="point.BorneMaximale" 
+              class="form-control has-feedback" placeholder="pas plus que..." [appMin]="point.BorneMinimale" [min]="point.BorneMinimale" />
+              <app-show-errors [control]="borneMaxi"></app-show-errors>
+          </div>
+      </div>
 
       <div class="form-group row">
           <label for="fldCategorie" class="col-md-2 col-form-label">Catégorie</label>

@@ -39,3 +39,7 @@ select option:not([disabled]) {
 ul.no-style{
     list-style: none;
 }
+
+span.form-control{
+    min-height: 20px;
+}

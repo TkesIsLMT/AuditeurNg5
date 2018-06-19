@@ -3,21 +3,25 @@ import { TypeElement } from '../../../enums/type-element.enum';
 import { ElementBase } from './element-base';
 import * as _ from 'lodash';
 import { PointService } from '../points/point.service';
-import { map, merge, switchMap, tap } from 'rxjs/operators';
+import { map, merge, switchMap, tap, observeOn, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { zip } from 'rxjs/observable/zip';
 import { CacheGetter } from '../../../services/cache-getter';
 import { PointDetail } from '../points/point-detail';
 import { ModeleService } from './modele.service';
 import { ModeleDetail } from './modele-detail';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ElementService {
   private currentModele:number = 0;
   private currentUT:number = 0;
+  isActivationOn:boolean = false;
+  activeElement$: Subject<ElementBase>;
   hasSousModele$: Observable<boolean>;
   pointsDisponible:CacheGetter<PointDetail[]>;
   modelesDisponible:CacheGetter<ModeleDetail[]>;
+
 
   constructor(private pointSrv:PointService, private modeleSrv: ModeleService) {
     this.pointsDisponible = new CacheGetter<PointDetail[]>(()=>pointSrv.pointInCache.data.pipe(map(res=>_.filter(res, function(o){
@@ -26,7 +30,8 @@ export class ElementService {
     this.modelesDisponible = new CacheGetter<ModeleDetail[]>(()=>modeleSrv.modeleInCache.data.pipe(map(res=>_.filter(res, function(o){
       return o.UniteTravailId === this.currentUT && o.Id !== this.currentModele
     }.bind(this)))));
-    this.hasSousModele$ = this.modelesDisponible.data.pipe(map(res => res.length>0));
+    this.hasSousModele$ = this.modelesDisponible.data.pipe(map(res => res.length>0), shareReplay(1));
+    this.activeElement$ = new Subject<ElementBase>();
   }
 
   setCurrentData(idMod:number, idUt: number){
@@ -42,6 +47,20 @@ export class ElementService {
     }
     this.pointsDisponible.forceReload();
     this.modelesDisponible.forceReload();
+  }
+
+  startActivation(){
+    this.isActivationOn = true;
+  }
+  
+  stopActivation(){
+    this.activeElement$.next(new ElementBase(TypeElement.Modele));
+    this.isActivationOn = false;
+  }
+
+  activateElement(ele:ElementBase){
+    if (this.isActivationOn)
+      this.activeElement$.next(ele);
   }
 
   sousTypeAutorise(type:TypeElement) {

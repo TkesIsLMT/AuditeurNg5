@@ -1,0 +1,11 @@
+.element-container{
+    display:flex;
+    border-top-left-radius: .25rem;
+    border-left: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+    padding-left: .5rem;
+    padding-top:.5rem;
+    margin-top:.5rem;
+    width: 100%;
+    /* d-flex border-top border-left rounded-left pl-2 pt-2 mt-2 w-100 */
+}
