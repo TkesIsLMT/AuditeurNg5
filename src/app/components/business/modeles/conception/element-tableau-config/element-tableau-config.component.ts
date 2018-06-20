@@ -40,7 +40,7 @@ export class ElementTableauConfigComponent implements OnInit {
 
   redim(  ){
     if (this.nombreColonne<this.entetesColonne.length){
-      this.entetesColonne.slice(0,this.nombreColonne);
+      this.entetesColonne = this.entetesColonne.slice(0,this.nombreColonne);
     } else {
       do {
         this.entetesColonne.push({numero:this.entetesColonne.length+1, libelle:''});  

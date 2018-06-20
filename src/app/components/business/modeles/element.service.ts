@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { TypeElement } from '../../../enums/type-element.enum';
 import { ElementBase } from './element-base';
 import * as _ from 'lodash';
 import { PointService } from '../points/point.service';
-import { map, merge, switchMap, tap, observeOn, shareReplay } from 'rxjs/operators';
+import { map, merge, switchMap, tap, observeOn } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { zip } from 'rxjs/observable/zip';
 import { CacheGetter } from '../../../services/cache-getter';
@@ -13,25 +13,32 @@ import { ModeleDetail } from './modele-detail';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class ElementService {
+export class ElementService implements OnDestroy {
   private currentModele:number = 0;
   private currentUT:number = 0;
   isActivationOn:boolean = false;
+  currentDataChange$: Subject<any>;
   activeElement$: Subject<ElementBase>;
-  hasSousModele$: Observable<boolean>;
   pointsDisponible:CacheGetter<PointDetail[]>;
   modelesDisponible:CacheGetter<ModeleDetail[]>;
 
 
   constructor(private pointSrv:PointService, private modeleSrv: ModeleService) {
+    this.activeElement$ = new Subject<ElementBase>();
+    this.currentDataChange$ = new Subject<any>();
+
     this.pointsDisponible = new CacheGetter<PointDetail[]>(()=>pointSrv.pointInCache.data.pipe(map(res=>_.filter(res, function(o){
       return _.indexOf(o.ListeUnite, this.currentUT)>=0
     }.bind(this)))));
-    this.modelesDisponible = new CacheGetter<ModeleDetail[]>(()=>modeleSrv.modeleInCache.data.pipe(map(res=>_.filter(res, function(o){
-      return o.UniteTravailId === this.currentUT && o.Id !== this.currentModele
-    }.bind(this)))));
-    this.hasSousModele$ = this.modelesDisponible.data.pipe(map(res => res.length>0), shareReplay(1));
-    this.activeElement$ = new Subject<ElementBase>();
+    this.modelesDisponible = new CacheGetter<ModeleDetail[]>(()=>modeleSrv.modeleInCache.data.pipe(
+      map(res=>_.filter(res, function(o){
+        return o.UniteTravailId === this.currentUT && o.Id !== this.currentModele
+      }.bind(this)))));
+  }
+
+  ngOnDestroy(): void {
+    this.activeElement$.complete();
+    this.currentDataChange$.complete();
   }
 
   setCurrentData(idMod:number, idUt: number){
@@ -47,6 +54,7 @@ export class ElementService {
     }
     this.pointsDisponible.forceReload();
     this.modelesDisponible.forceReload();
+    this.currentDataChange$.next();
   }
 
   startActivation(){

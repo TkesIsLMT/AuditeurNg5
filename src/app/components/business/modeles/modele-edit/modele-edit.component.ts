@@ -38,9 +38,9 @@ export class ModeleEditComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap((p:ParamMap)=>this.modSrv.getOrInitModele(p.get('id')))
     ).subscribe((res:ModeleDetail)=> {
+      this.initElementService(res);
       this.modele = res
       this.unites = this.modele.UniteTravailId ? [this.modele.UniteTravailId]:[];
-      this.initElementService();
 
       let ele = this.genererArbre(_.map(this.modele.Elements,o=>{
         let d = new ElementBase(o.TypeElement);
@@ -71,8 +71,8 @@ export class ModeleEditComponent implements OnInit {
     this.initElementService();
   }
 
-  private initElementService() {
-    this.eleSrv.setCurrentData(this.modele.Id, this.modele.UniteTravailId);
+  private initElementService(modele:ModeleDetail = this.modele) {
+    this.eleSrv.setCurrentData(modele.Id, modele.UniteTravailId);
   }
 
   onAddElement(value:ElementBase){

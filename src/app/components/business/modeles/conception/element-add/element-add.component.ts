@@ -26,14 +26,18 @@ export class ElementAddComponent implements OnInit {
 
   ngOnInit() {
     this.currentType = this.element ? this.element.TypeElement : TypeElement.Modele;
-    this.types = this.initTypes();
-    this.eleSrv.hasSousModele$.subscribe(res=>{
-        if (!res)
-          this.types = _.difference(this.types,[TypeElement.Modele]);
-      },
-        err=>console.log(err)
-      );
     this.caption = `Ajouter dans '${this.typeElementToString(this.currentType)}'`;
+    this.eleSrv.currentDataChange$.subscribe(()=>this.checkAvailableType());
+    this.checkAvailableType();
+  }
+
+  private checkAvailableType() {
+    this.eleSrv.modelesDisponible.data.subscribe(res => {
+      let tmp = this.initTypes();
+      if (res.length === 0)
+        tmp = _.difference(tmp, [TypeElement.Modele]);
+      this.types = tmp;
+    }, err => console.log(err));
   }
 
   initTypes(){

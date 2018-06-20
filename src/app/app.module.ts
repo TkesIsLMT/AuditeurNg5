@@ -76,6 +76,7 @@ import { MinValidatorDirective } from './directives/min-validator.directive';
 import { HorsBorneDirective } from './directives/hors-borne.directive';
 import { ExploiLocalisationComponent } from './components/business/modeles/exploitation/exploi-localisation/exploi-localisation.component';
 import { ElementLocalisableDirective } from './directives/element-localisable.directive';
+import { ExploiModeleComponent } from './components/business/modeles/exploitation/exploi-modele/exploi-modele.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { ElementLocalisableDirective } from './directives/element-localisable.di
      MinValidatorDirective,
      HorsBorneDirective,
      ExploiLocalisationComponent,
-     ElementLocalisableDirective, 
+     ElementLocalisableDirective,
+     ExploiModeleComponent, 
   ],
   entryComponents: [
     DeleteConfirmationDialogComponent,
